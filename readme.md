@@ -8,4 +8,5 @@ Hướng dẫn:
 - Thay đổi connection string trong database.cs cho phù hợp
 
 Tài khoản mặc định: admin
+
 Mật khẩu: admin

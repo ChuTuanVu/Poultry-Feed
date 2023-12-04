@@ -8,5 +8,7 @@ Visual Studio 2017, SQL Server Management Studio, Microsoft SQL Server 2019, .NE
 - Thay đổi connection string trong database.cs cho phù hợp
 
 ## Tài khoản mặc định:
+
 Tài khoản: admin
+
 Mật khẩu: admin

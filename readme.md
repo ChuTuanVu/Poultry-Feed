@@ -9,7 +9,7 @@ Microsoft SQL Server 2019
 
 .NET Framework 4.8.1, ADO.NET
 
-Crystal report for visual studio 2017
+Crystal Report for Visual Studio 2017
 ## Hướng dẫn: 
 - Chạy file sql.sql
 - Thay đổi connection string trong database.cs cho phù hợp

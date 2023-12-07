@@ -47,7 +47,7 @@ namespace btl
             }
             else
             {
-                MessageBox.Show("Vui lòng điền đầu đủ thông tin", "Thông tin thiếu");
+                MessageBox.Show("Vui lòng điền đầy đủ thông tin", "Thông tin thiếu");
             }
         }
 

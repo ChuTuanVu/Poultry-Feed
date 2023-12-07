@@ -166,10 +166,10 @@ namespace btl
                 string.IsNullOrEmpty(epsdt.GetError(tbsdt))&&
                 string.IsNullOrEmpty(epmk.GetError(tbmk))&&
                 string.IsNullOrEmpty(eptennguoidung.GetError(tbtennguoidung))&&
-                string.IsNullOrEmpty(tbemail.Text)&&
-                string.IsNullOrEmpty(tbsdt.Text)&&
-                string.IsNullOrEmpty(tbmk.Text)&&
-                string.IsNullOrEmpty(tbtennguoidung.Text))
+                !string.IsNullOrEmpty(tbemail.Text)&&
+                !string.IsNullOrEmpty(tbsdt.Text)&&
+                !string.IsNullOrEmpty(tbmk.Text)&&
+                !string.IsNullOrEmpty(tbtennguoidung.Text))
             {
                 string insert = "insert into taikhoan values (N'" + tbtennguoidung.Text + "',N'" + tbmk.Text
                 + "',N'" + tbemail.Text + "','" + tbsdt.Text + "','" + dtpkngaysinh.Value.ToString("yyyy-MM-dd") + "', '" + DateTime.Now.ToString("yyyy-MM-dd") + "')";

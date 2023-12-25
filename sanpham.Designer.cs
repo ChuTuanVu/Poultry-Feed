@@ -72,6 +72,10 @@
             this.btloc = new System.Windows.Forms.Button();
             this.tcsanpham = new System.Windows.Forms.TabControl();
             this.epsoluongmua = new System.Windows.Forms.ErrorProvider(this.components);
+            this.ttlocloai = new System.Windows.Forms.ToolTip(this.components);
+            this.ttlocnhacungcap = new System.Windows.Forms.ToolTip(this.components);
+            this.epsoluong = new System.Windows.Forms.ErrorProvider(this.components);
+            this.epgia = new System.Windows.Forms.ErrorProvider(this.components);
             this.tplsmuahang.SuspendLayout();
             this.tpsanpham.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvsanpham)).BeginInit();
@@ -79,6 +83,8 @@
             this.gbchucnang.SuspendLayout();
             this.tcsanpham.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epsoluongmua)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epsoluong)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epgia)).BeginInit();
             this.SuspendLayout();
             // 
             // tplsmuahang
@@ -211,6 +217,8 @@
             // 
             // cbbloai
             // 
+            this.cbbloai.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.cbbloai.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.cbbloai.Enabled = false;
             this.cbbloai.FormattingEnabled = true;
             this.cbbloai.Items.AddRange(new object[] {
@@ -254,6 +262,7 @@
             this.tbsoluongmua.Size = new System.Drawing.Size(61, 22);
             this.tbsoluongmua.TabIndex = 12;
             this.tbsoluongmua.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Tbsoluongmua_KeyPress);
+            this.tbsoluongmua.Leave += new System.EventHandler(this.tbsoluongmua_Leave);
             // 
             // lbmota
             // 
@@ -340,6 +349,7 @@
             this.tbsoluong.Name = "tbsoluong";
             this.tbsoluong.Size = new System.Drawing.Size(61, 22);
             this.tbsoluong.TabIndex = 7;
+            this.tbsoluong.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbsoluong_KeyPress);
             // 
             // tbgia
             // 
@@ -348,6 +358,7 @@
             this.tbgia.Name = "tbgia";
             this.tbgia.Size = new System.Drawing.Size(138, 22);
             this.tbgia.TabIndex = 9;
+            this.tbgia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbgia_KeyPress);
             // 
             // gbchucnang
             // 
@@ -373,7 +384,7 @@
             // 
             this.btmota.Image = global::btl.Properties.Resources.mota;
             this.btmota.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btmota.Location = new System.Drawing.Point(237, 53);
+            this.btmota.Location = new System.Drawing.Point(220, 53);
             this.btmota.Name = "btmota";
             this.btmota.Size = new System.Drawing.Size(80, 40);
             this.btmota.TabIndex = 10;
@@ -387,9 +398,9 @@
             // 
             this.btmua.Image = global::btl.Properties.Resources.mua;
             this.btmua.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btmua.Location = new System.Drawing.Point(422, 53);
+            this.btmua.Location = new System.Drawing.Point(408, 53);
             this.btmua.Name = "btmua";
-            this.btmua.Size = new System.Drawing.Size(80, 40);
+            this.btmua.Size = new System.Drawing.Size(94, 40);
             this.btmua.TabIndex = 9;
             this.btmua.Text = "MUA HÀNG";
             this.btmua.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -399,6 +410,8 @@
             // 
             // cbblocnhacungcap
             // 
+            this.cbblocnhacungcap.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cbblocnhacungcap.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.cbblocnhacungcap.FormattingEnabled = true;
             this.cbblocnhacungcap.Items.AddRange(new object[] {
             "Công ty cổ phần Tập đoàn DABACO Việt Nam",
@@ -406,26 +419,29 @@
             "Công ty TNHH Cargill Việt Nam",
             "De Heus Việt Nam",
             "TT phân phối thuốc trang trại FARMVET"});
-            this.cbblocnhacungcap.Location = new System.Drawing.Point(710, 53);
+            this.cbblocnhacungcap.Location = new System.Drawing.Point(666, 53);
             this.cbblocnhacungcap.Name = "cbblocnhacungcap";
-            this.cbblocnhacungcap.Size = new System.Drawing.Size(140, 23);
+            this.cbblocnhacungcap.Size = new System.Drawing.Size(184, 23);
             this.cbblocnhacungcap.TabIndex = 8;
+            this.cbblocnhacungcap.MouseMove += new System.Windows.Forms.MouseEventHandler(this.cbblocnhacungcap_MouseMove);
             // 
             // tbtim
             // 
-            this.tbtim.Location = new System.Drawing.Point(710, 85);
-            this.tbtim.Multiline = true;
+            this.tbtim.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.tbtim.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.tbtim.Location = new System.Drawing.Point(666, 92);
             this.tbtim.Name = "tbtim";
-            this.tbtim.Size = new System.Drawing.Size(140, 42);
+            this.tbtim.Size = new System.Drawing.Size(184, 22);
             this.tbtim.TabIndex = 7;
+            this.tbtim.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbtim_KeyDown);
             // 
             // btthem
             // 
             this.btthem.Image = global::btl.Properties.Resources.them;
             this.btthem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btthem.Location = new System.Drawing.Point(121, 53);
+            this.btthem.Location = new System.Drawing.Point(102, 53);
             this.btthem.Name = "btthem";
-            this.btthem.Size = new System.Drawing.Size(80, 40);
+            this.btthem.Size = new System.Drawing.Size(88, 40);
             this.btthem.TabIndex = 1;
             this.btthem.Text = "THÊM";
             this.btthem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -451,7 +467,7 @@
             // 
             this.bttim.Image = global::btl.Properties.Resources.tim;
             this.bttim.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bttim.Location = new System.Drawing.Point(603, 87);
+            this.bttim.Location = new System.Drawing.Point(580, 82);
             this.bttim.Name = "bttim";
             this.bttim.Size = new System.Drawing.Size(80, 40);
             this.bttim.TabIndex = 6;
@@ -465,7 +481,7 @@
             // 
             this.btsua.Image = global::btl.Properties.Resources.sua;
             this.btsua.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btsua.Location = new System.Drawing.Point(351, 53);
+            this.btsua.Location = new System.Drawing.Point(324, 53);
             this.btsua.Name = "btsua";
             this.btsua.Size = new System.Drawing.Size(80, 40);
             this.btsua.TabIndex = 2;
@@ -491,21 +507,24 @@
             // 
             // cbblocloai
             // 
+            this.cbblocloai.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.cbblocloai.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.cbblocloai.FormattingEnabled = true;
             this.cbblocloai.Items.AddRange(new object[] {
             "Gà",
             "Vịt",
             "Thuốc"});
-            this.cbblocloai.Location = new System.Drawing.Point(710, 17);
+            this.cbblocloai.Location = new System.Drawing.Point(666, 17);
             this.cbblocloai.Name = "cbblocloai";
-            this.cbblocloai.Size = new System.Drawing.Size(140, 23);
+            this.cbblocloai.Size = new System.Drawing.Size(184, 23);
             this.cbblocloai.TabIndex = 5;
+            this.cbblocloai.MouseMove += new System.Windows.Forms.MouseEventHandler(this.cbblocloai_MouseMove);
             // 
             // btloc
             // 
             this.btloc.Image = global::btl.Properties.Resources.loc;
             this.btloc.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btloc.Location = new System.Drawing.Point(603, 26);
+            this.btloc.Location = new System.Drawing.Point(580, 21);
             this.btloc.Name = "btloc";
             this.btloc.Size = new System.Drawing.Size(80, 40);
             this.btloc.TabIndex = 4;
@@ -531,6 +550,30 @@
             this.epsoluongmua.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.epsoluongmua.ContainerControl = this;
             // 
+            // ttlocloai
+            // 
+            this.ttlocloai.AutoPopDelay = 5000;
+            this.ttlocloai.InitialDelay = 100;
+            this.ttlocloai.ReshowDelay = 100;
+            // 
+            // ttlocnhacungcap
+            // 
+            this.ttlocnhacungcap.AutoPopDelay = 5000;
+            this.ttlocnhacungcap.InitialDelay = 100;
+            this.ttlocnhacungcap.ReshowDelay = 100;
+            // 
+            // epsoluong
+            // 
+            this.epsoluong.BlinkRate = 1;
+            this.epsoluong.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.epsoluong.ContainerControl = this;
+            // 
+            // epgia
+            // 
+            this.epgia.BlinkRate = 1;
+            this.epgia.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.epgia.ContainerControl = this;
+            // 
             // Sanpham
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -554,6 +597,8 @@
             this.gbchucnang.PerformLayout();
             this.tcsanpham.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.epsoluongmua)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epsoluong)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epgia)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -601,5 +646,9 @@
         private System.Windows.Forms.ComboBox cbbloai;
         private hoadonmua hoadonmua1;
         private System.Windows.Forms.ErrorProvider epsoluongmua;
+        private System.Windows.Forms.ToolTip ttlocloai;
+        private System.Windows.Forms.ToolTip ttlocnhacungcap;
+        private System.Windows.Forms.ErrorProvider epsoluong;
+        private System.Windows.Forms.ErrorProvider epgia;
     }
 }

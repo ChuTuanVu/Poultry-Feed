@@ -286,11 +286,13 @@
             // 
             // tbtim
             // 
-            this.tbtim.Location = new System.Drawing.Point(744, 50);
-            this.tbtim.Multiline = true;
+            this.tbtim.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.tbtim.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.tbtim.Location = new System.Drawing.Point(682, 60);
             this.tbtim.Name = "tbtim";
-            this.tbtim.Size = new System.Drawing.Size(80, 45);
+            this.tbtim.Size = new System.Drawing.Size(172, 26);
             this.tbtim.TabIndex = 10;
+            this.tbtim.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbtim_KeyDown);
             // 
             // btmoi
             // 
@@ -313,7 +315,7 @@
             this.bttim.AutoSize = true;
             this.bttim.Image = global::btl.Properties.Resources.tim;
             this.bttim.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bttim.Location = new System.Drawing.Point(643, 50);
+            this.bttim.Location = new System.Drawing.Point(596, 50);
             this.bttim.Name = "bttim";
             this.bttim.Size = new System.Drawing.Size(80, 45);
             this.bttim.TabIndex = 8;
@@ -329,7 +331,7 @@
             this.btxoa.AutoSize = true;
             this.btxoa.Image = global::btl.Properties.Resources.xoa;
             this.btxoa.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btxoa.Location = new System.Drawing.Point(502, 50);
+            this.btxoa.Location = new System.Drawing.Point(455, 50);
             this.btxoa.Name = "btxoa";
             this.btxoa.Size = new System.Drawing.Size(85, 45);
             this.btxoa.TabIndex = 7;

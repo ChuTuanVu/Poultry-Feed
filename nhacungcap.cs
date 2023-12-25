@@ -5,6 +5,7 @@ namespace btl
 {
     public partial class nhacungcap : System.Windows.Forms.Form
     {
+        private string manhacungcap;
         public nhacungcap()
         {
             InitializeComponent();
@@ -15,6 +16,11 @@ namespace btl
 
         private void Nhacungcap_Load(object sender, EventArgs e)
         {
+            string lenh = "select * from nhacungcap";
+            AutoCompleteStringCollection autoCompleteStringCollection = new AutoCompleteStringCollection();
+            string cot = "manhacungcap";
+            TextBox textBox = tbtim;
+            database.Tu(lenh, autoCompleteStringCollection, cot, textBox);
             string select = "select * from nhacungcap";
             database.Tai(select,dtgvnhacungcap);
         }
@@ -28,13 +34,14 @@ namespace btl
                 tbngayky.Visible = true;
                 dtpkngayhet.Visible = false;
                 dtpkngayky.Visible = false;
-                DataGridViewRow chon = dtgvnhacungcap.Rows[e.RowIndex];
-                tbmanhacc.Text = chon.Cells["Column1"].Value.ToString();
-                tbtenncc.Text = chon.Cells["Column2"].Value.ToString();
-                tbdiachi.Text = chon.Cells["Column3"].Value.ToString();
-                tbsdt.Text = chon.Cells["Column4"].Value.ToString();
-                tbngayky.Text = string.Format("{0:dd/MM/yyyy}", chon.Cells["Column5"].Value);
-                tbngayhethan.Text = string.Format("{0:dd/MM/yyyy}", chon.Cells["Column6"].Value);
+                DataGridViewRow dataGridViewRow = dtgvnhacungcap.Rows[e.RowIndex];
+                tbmanhacc.Text = dataGridViewRow.Cells["Column1"].Value.ToString();
+                manhacungcap = dataGridViewRow.Cells["Column1"].Value.ToString();
+                tbtenncc.Text = dataGridViewRow.Cells["Column2"].Value.ToString();
+                tbdiachi.Text = dataGridViewRow.Cells["Column3"].Value.ToString();
+                tbsdt.Text = dataGridViewRow.Cells["Column4"].Value.ToString();
+                tbngayky.Text = string.Format("{0:dd/MM/yyyy}", dataGridViewRow.Cells["Column5"].Value);
+                tbngayhethan.Text = string.Format("{0:dd/MM/yyyy}", dataGridViewRow.Cells["Column6"].Value);
             }
         }
 
@@ -62,7 +69,7 @@ namespace btl
                 if (MessageBox.Show("Bạn có muốn sửa nhà cung cấp này không?", "Sửa nhà cung cấp?", MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    string update = "update nhacungcap set manhacungcap = '" + tbmanhacc.Text + "', tennhacungcap = N'" + tbtenncc.Text + "',diachi = N'" + tbdiachi.Text + "', sodienthoai = '" + tbsdt.Text + "', ngayky = N'" + dtpkngayky.Value.ToString("yyyy-MM-dd") + "',ngayhethan = N'" + dtpkngayhet.Value.ToString("yyyy-MM-dd") + "' where manhacungcap = '" + tbmanhacc.Text + "'";
+                    string update = "update nhacungcap set manhacungcap = '" + manhacungcap + "', tennhacungcap = N'" + tbtenncc.Text + "',diachi = N'" + tbdiachi.Text + "', sodienthoai = '" + tbsdt.Text + "', ngayky = N'" + dtpkngayky.Value.ToString("yyyy-MM-dd") + "',ngayhethan = N'" + dtpkngayhet.Value.ToString("yyyy-MM-dd") + "' where manhacungcap = '" + tbmanhacc.Text + "'";
                     database.Chay(update);
                     MessageBox.Show("Sửa sản phẩm thành công!", "Thành công");
                     Nhacungcap_Load(this, EventArgs.Empty);
@@ -133,6 +140,14 @@ namespace btl
         {
             form.Cacchucnang();
             Hide();
+        }
+
+        private void tbtim_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                bttim_Click(this, EventArgs.Empty);
+            }
         }
     }
 }

@@ -57,7 +57,7 @@ namespace btl
             }
             else
             {
-                MessageBox.Show("Thông tin xác thực đăng nhập của bạn không khớp với tài khoản trong hệ thống.","Kiểm tra lại thông tin");
+                MessageBox.Show("Tên tài khoản hoặc mật khẩu không chính xác!","Thất bại!");
                 tbmk.Clear();
                 tbmk.Focus();
             }

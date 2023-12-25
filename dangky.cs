@@ -54,7 +54,6 @@ namespace btl
                 btsdt.Enabled = true;
                 epsdt.Clear();
             }
-
         }
 
         private void Tbmk_TextChanged(object sender, EventArgs e)

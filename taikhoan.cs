@@ -16,6 +16,11 @@ namespace btl
 
         private void Taikhoan_Load(object sender, EventArgs e)
         {
+            string lenh = "select * from taikhoan";
+            AutoCompleteStringCollection autoCompleteStringCollection = new AutoCompleteStringCollection();
+            string cot = "tennguoidung";
+            TextBox textBox = tbtim;
+            database.Tu(lenh, autoCompleteStringCollection, cot, textBox);
             string select = "select * from taikhoan where tennguoidung <> 'admin' and tennguoidung <> 'user'";
             database.Tai(select, dtgvtaikhoan);
         }
@@ -50,7 +55,7 @@ namespace btl
                 int dem = database.Dem(count);
                 if (dem > 0)
                 {
-                    if (MessageBox.Show("Xóa người dùng ngày sẽ xóa toàn bộ dữ liệu liên quan", "Bạn đã chắc chắn muốn xóa?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    if (MessageBox.Show("Xóa người dùng ngày sẽ xóa toàn bộ dữ liệu liên quan", "Bạn có chắc chắn muốn xóa?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         string delete = "delete from taikhoan where tennguoidung = '" + tbtennguoidung.Text + "'";
                         database.Chay(delete);
@@ -61,12 +66,12 @@ namespace btl
                 }
                 else
                 {
-                    MessageBox.Show("Tên " + tbtennguoidung.Text + " không có trong hệ thống", "Không tìm thấy");
+                    MessageBox.Show("Tên " + tbtennguoidung.Text + " không có trong hệ thống", "Không tìm thấy!");
                 }
             }
             else
             {
-                MessageBox.Show("Vui lòng chọn một người dùng phía dưới hoặc nhập tên người dùng thủ công","Thiếu thông tin");
+                MessageBox.Show("Chọn một tài khoản phía dưới hoặc nhập tên người dùng.","Thiếu thông tin!");
             }
         }
 
@@ -91,17 +96,17 @@ namespace btl
                     }
                     else
                     {
-                        MessageBox.Show("Vui lòng kiểm tra lại thông tin", "Thất bại");
+                        MessageBox.Show("Vui lòng kiểm tra lại thông tin!", "Thất bại!");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Tên " + tbtennguoidung.Text + " đã có người đăng ký", "Bị trùng");
+                    MessageBox.Show("Tên người dùng " + tbtennguoidung.Text + " không khả dụng!", "Thất bại!");
                 }
             }
             else
             {
-                MessageBox.Show("Vui lòng điền đầy đủ thông tin", "Thất bại");
+                MessageBox.Show("Vui lòng điền đầy đủ thông tin!", "Thất bại!");
             }
         }
 
@@ -121,13 +126,13 @@ namespace btl
                 {
                     string update = "update taikhoan set tennguoidung = '" + tbtennguoidung.Text + "', matkhau = '" + tbmk.Text + "',email = '" + tbemail.Text + "', sodienthoai = '" + tbsdt.Text + "', ngaysinh = '" + dtpkngaysinh.Value.ToString("yyyy-MM-dd") + "' where tennguoidung = '" + tbtennguoidung.Text + "'";
                     database.Chay(update);
-                    MessageBox.Show("Sửa tài khoản thành công!", "Thành công");
+                    MessageBox.Show("Sửa tài khoản thành công.", "Thành công");
                     Taikhoan_Load(this, EventArgs.Empty);
                 }
             }
             else
             {
-                MessageBox.Show("Vui lòng kiểm tra lại thông tin", "Thất bại");
+                MessageBox.Show("Vui lòng kiểm tra lại thông tin!", "Thất bại!");
             }
         }
 
@@ -176,24 +181,13 @@ namespace btl
         {
             string count = "select count(*) from taikhoan where tennguoidung = '" + tbtennguoidung.Text + "'";
             int dem = database.Dem(count);
-            if (dem == 0)
+            if (dem == 0 && tbtennguoidung.Text.Length > 3 && tbtennguoidung.Text.Length < 25)
             {
-                if (tbtennguoidung.Text.Length < 3)
-                {
-                    eptennguoidung.SetError(tbtennguoidung, "Tên người dùng phải dài hơn 3 kí tự.");
-                }
-                else if (tbtennguoidung.Text.Length > 25)
-                {
-                    eptennguoidung.SetError(tbtennguoidung, "Tên người dùng phải ngắn hơn 25 kí tự.");
-                }
-                else
-                {
-                    eptennguoidung.Clear();
-                }
+                eptennguoidung.Clear();
             }
             else
             {
-                eptennguoidung.SetError(tbtennguoidung, "Tên người dùng này đã tồn tại.");
+                eptennguoidung.SetError(tbtennguoidung, "Tên người dùng " + tbtennguoidung.Text + " không khả dụng.");
             }
         }
 
@@ -201,20 +195,18 @@ namespace btl
         {
             string count = "select count (*) from taikhoan where email = '" + tbemail.Text + "'";
             int dem = database.Dem(count);
-            if (dem == 0)
+            if (dem == 0 && tbemail.Text.Contains("@"))
             {
-                if (!tbemail.Text.Contains("@"))
-                {
-                    epemail.SetError(tbemail, $"Vui lòng bao gồm '@' trong địa chỉ email. '" + tbemail.Text + "' đang thiếu một '@'");
-                }
-                else
-                {
-                    epemail.Clear();
-                }
+                ttemail.SetToolTip(tbemail, "");
+                epemail.Clear();
             }
             else
             {
-                epemail.SetError(tbemail, "Email không hợp lệ hoặc đã được đăng ký");
+                epemail.SetError(tbemail, "Email không hợp lệ hoặc đã được sử dụng");
+                if (!tbemail.Text.Contains("@"))
+                {
+                    ttemail.SetToolTip(tbemail, $"Vui lòng bao gồm '@' trong địa chỉ email. '" + tbemail.Text + "' đang thiếu một '@'.");
+                }
             }
         }
 
@@ -228,7 +220,6 @@ namespace btl
             {
                 epsdt.Clear();
             }
-
         }
         private void Tbsdt_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -260,6 +251,14 @@ namespace btl
         {
             form.Cacchucnang();
             Hide();
+        }
+
+        private void tbtim_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode==Keys.Enter)
+            {
+                Bttim_Click(this, EventArgs.Empty);
+            }
         }
     }
 }

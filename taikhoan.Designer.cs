@@ -63,6 +63,7 @@
             this.epmk = new System.Windows.Forms.ErrorProvider(this.components);
             this.epsdt = new System.Windows.Forms.ErrorProvider(this.components);
             this.eptennguoidung = new System.Windows.Forms.ErrorProvider(this.components);
+            this.ttemail = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dtgvtaikhoan)).BeginInit();
             this.gbhethong.SuspendLayout();
             this.gbthongtin.SuspendLayout();
@@ -152,12 +153,14 @@
             // 
             // tbtim
             // 
-            this.tbtim.Location = new System.Drawing.Point(788, 30);
-            this.tbtim.Multiline = true;
+            this.tbtim.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.tbtim.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.tbtim.Location = new System.Drawing.Point(708, 42);
             this.tbtim.Name = "tbtim";
-            this.tbtim.Size = new System.Drawing.Size(80, 45);
+            this.tbtim.Size = new System.Drawing.Size(160, 22);
             this.tbtim.TabIndex = 5;
             this.tbtim.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbtim.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbtim_KeyDown);
             // 
             // btmoi
             // 
@@ -180,7 +183,7 @@
             this.bttim.AutoSize = true;
             this.bttim.Image = global::btl.Properties.Resources.tim;
             this.bttim.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bttim.Location = new System.Drawing.Point(674, 30);
+            this.bttim.Location = new System.Drawing.Point(622, 30);
             this.bttim.Name = "bttim";
             this.bttim.Size = new System.Drawing.Size(80, 45);
             this.bttim.TabIndex = 3;
@@ -196,7 +199,7 @@
             this.btxoa.AutoSize = true;
             this.btxoa.Image = global::btl.Properties.Resources.xoa;
             this.btxoa.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btxoa.Location = new System.Drawing.Point(516, 30);
+            this.btxoa.Location = new System.Drawing.Point(464, 30);
             this.btxoa.Name = "btxoa";
             this.btxoa.Size = new System.Drawing.Size(80, 45);
             this.btxoa.TabIndex = 2;
@@ -348,7 +351,7 @@
             // 
             this.tbemail.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbemail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbemail.Location = new System.Drawing.Point(649, 21);
+            this.tbemail.Location = new System.Drawing.Point(617, 21);
             this.tbemail.Name = "tbemail";
             this.tbemail.Size = new System.Drawing.Size(219, 22);
             this.tbemail.TabIndex = 4;
@@ -421,6 +424,12 @@
             this.eptennguoidung.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.eptennguoidung.ContainerControl = this;
             // 
+            // ttemail
+            // 
+            this.ttemail.AutoPopDelay = 5000;
+            this.ttemail.InitialDelay = 100;
+            this.ttemail.ReshowDelay = 100;
+            // 
             // Taikhoan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -486,5 +495,6 @@
         private System.Windows.Forms.TextBox tbngaysinh;
         private System.Windows.Forms.Button btmoi;
         private System.Windows.Forms.TextBox tbtim;
+        private System.Windows.Forms.ToolTip ttemail;
     }
 }

@@ -5,6 +5,7 @@ namespace btl
 {
     public partial class Sanpham : System.Windows.Forms.Form
     {
+        public string masanpham;
         public Sanpham()
         {
             InitializeComponent();
@@ -15,16 +16,46 @@ namespace btl
 
         void Taidulieu()
         {
+            string select = "select masanpham, tensanpham, loai, soluong, gia, nhacungcap from sanpham";
+            if (Luu.tk == "admin")
+            {
+                database.Taiad(select, dtgvsanpham);
+            }
+            else
+            {
+                database.Tai(select, dtgvsanpham);
+            }
+
             string tenproc = "hoadonnguoidung";
             string ten = "@tennguoidung";
             string giatriten = Luu.tk;
-            database.Hoa(tenproc, ten, giatriten, hoadonmua1);
-            string select = "select masanpham, tensanpham, loai, soluong, gia, nhacungcap from sanpham";
-            database.Tai(select, dtgvsanpham);
+            database.Hoa(tenproc, ten, giatriten, hoadonmua1);           
         }
 
         private void Sanpham_Load(object sender, EventArgs e)
         {
+            string lenh = "select * from sanpham";
+            AutoCompleteStringCollection autoCompleteStringCollection = new AutoCompleteStringCollection();
+            string cot = "masanpham";
+            string cot1 = "tensanpham";
+            TextBox textBox = tbtim;
+            database.Tu(lenh, autoCompleteStringCollection, cot, textBox );
+            database.Tu(lenh, autoCompleteStringCollection, cot1, textBox);
+
+            AutoCompleteStringCollection autoCompleteStringCollection1 = new AutoCompleteStringCollection();
+            string cot2 = "loai";
+            ComboBox comboBox = cbblocloai;
+            database.Tu(lenh, autoCompleteStringCollection1, cot2, comboBox);
+
+            AutoCompleteStringCollection autoCompleteStringCollection2 = new AutoCompleteStringCollection();
+            string cot3 = "nhacungcap";
+            ComboBox comboBox1 = cbblocnhacungcap;
+            database.Tu(lenh, autoCompleteStringCollection2, cot3, comboBox1);
+
+            AutoCompleteStringCollection autoCompleteStringCollection3 = new AutoCompleteStringCollection();
+            ComboBox comboBox2 = cbbloai;
+            database.Tu(lenh, autoCompleteStringCollection3, cot2, cbbloai);
+
             Taidulieu();
             if (Luu.tk == "admin")
             {
@@ -56,6 +87,7 @@ namespace btl
             cbblocloai.Text = "";
             cbblocnhacungcap.Text = "";
             Taidulieu();
+            tbtim.Clear();
         }
 
         private void Btthem_Click(object sender, EventArgs e)
@@ -99,11 +131,25 @@ namespace btl
                 if (MessageBox.Show("Bạn có muốn sửa sản phẩm này không?", "Thông báo", MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    string update = "update sanpham set masanpham = '" + tbmasp.Text + "', tensanpham = N'" + tbtensp.Text + "',soluong = '" + tbsoluong.Text + "', gia = '" + tbgia.Text + "', loai = N'" + cbbloai.Text + "',mota = N'" + tbnhacungcap.Text + "' where masanpham = '" + tbmasp.Text + "'";
-                    database.Chay(update);
+                    string lenh = "select soluong from sanpham where masanpham = '" + tbmasp.Text +"'";
+                    int ss = database.Dem(lenh);
+                    if (ss == Convert.ToInt16(tbsoluong.Text))
+                    {
+                        string update = "update sanpham set masanpham = '" + masanpham + "', tensanpham = N'" + tbtensp.Text + "', gia = '" + tbgia.Text + "', loai = N'" + cbbloai.Text + "' where masanpham = '" + tbmasp.Text + "'";
+                        database.Chay(update);
+                    }
+                    else
+                    {
+                        string update = "update sanpham set masanpham = '" + masanpham + "', tensanpham = N'" + tbtensp.Text + "',soluong = '" + tbsoluong.Text + "', gia = '" + tbgia.Text + "', loai = N'" + cbbloai.Text + "' where masanpham = '" + tbmasp.Text + "'";
+                        database.Chay(update);
+                    }
                     Taidulieu();
                     MessageBox.Show("Sửa sản phẩm thành công", "Thành công");
                 }
+            }
+            else
+            {
+
             }
         }
 
@@ -129,11 +175,13 @@ namespace btl
 
         private void Btmua_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(tbsoluongmua.Text))
-            {
-                throw new Exception("reterter");
-            }
-            else
+            if (!string.IsNullOrWhiteSpace(tbsoluong.Text) &&
+                !string.IsNullOrWhiteSpace(tbsoluongmua.Text) &&
+                !string.IsNullOrWhiteSpace(tbgia.Text) &&
+                !string.IsNullOrWhiteSpace(tbmasp.Text) &&
+                !string.IsNullOrWhiteSpace(tbtensp.Text) &&
+                !string.IsNullOrWhiteSpace(cbbloai.Text) &&
+                !string.IsNullOrWhiteSpace(tbnhacungcap.Text))
             {
                 if (MessageBox.Show("Bạn có chắc muốn mua sản phẩm này không?\nBạn sẽ phải trả " + int.Parse(tbsoluongmua.Text) * int.Parse(tbgia.Text) + " đồng" + "", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
@@ -150,12 +198,17 @@ namespace btl
                         string giatriten = Luu.tk;
                         database.Hoa(tenproc, ten, giatriten, hoadonmua1);
                         rpnguoidung.RefreshReport();
+                        MessageBox.Show("Mua hàng thành công", "Thành công");
                     }
                     else
                     {
-                        MessageBox.Show("Số lượng trong kho không đủ", "Thất bại");
+                        MessageBox.Show("Số lượng trong kho không đủ!", "Thất bại!");
                     }
                 }
+            }
+            else
+            {
+                MessageBox.Show("Thông tin sản phẩm còn thiếu!", "Thất bại!");
             }
         }
 
@@ -165,6 +218,7 @@ namespace btl
             {
                 DataGridViewRow chon = dtgvsanpham.Rows[e.RowIndex];
                 tbmasp.Text = chon.Cells["Column1"].Value.ToString();
+                masanpham = chon.Cells["Column1"].Value.ToString();
                 tbtensp.Text = chon.Cells["Column2"].Value.ToString();
                 tbsoluong.Text = chon.Cells["Column3"].Value.ToString();
                 tbgia.Text = chon.Cells["Column4"].Value.ToString();
@@ -196,6 +250,8 @@ namespace btl
                 string select = "select masanpham, tensanpham, soluong, gia, loai, nhacungcap from sanpham where loai = N'" + cbblocloai.Text + "' and nhacungcap = N'" + cbblocnhacungcap.Text + "'";
                 database.Tai(select, dtgvsanpham);
             }
+            cbblocloai.Text = "";
+            cbblocnhacungcap.Text = "";
         }
 
         private void Bttim_Click(object sender, EventArgs e)
@@ -222,7 +278,7 @@ namespace btl
             {
                 string select = "select mota from sanpham where masanpham = '" + tbmasp.Text + "'";
                 database.Chay(select);
-                database.Ketnoi();
+                database.Ket();
                 tbmota.Text = database.cm.ExecuteScalar().ToString();
                 database.Ngat();
             }
@@ -245,6 +301,69 @@ namespace btl
         {
             form.Cacchucnang();
             Hide();
+        }
+
+        private void tbtim_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                Bttim_Click(this, EventArgs.Empty);
+            }
+        }
+
+        private void cbblocloai_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (string.IsNullOrEmpty(cbblocloai.Text))
+            {
+                ttlocloai.SetToolTip(cbblocloai, $"Lọc theo loại mặt hàng");
+            }
+            else
+            {
+                ttlocloai.SetToolTip(cbblocloai, $"");
+            }
+        }
+
+        private void cbblocnhacungcap_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (string.IsNullOrEmpty(cbblocloai.Text))
+            {
+                ttlocnhacungcap.SetToolTip(cbblocnhacungcap, $"Lọc theo nhà cung cấp");
+            }
+            else
+            {
+                ttlocnhacungcap.SetToolTip(cbblocnhacungcap, $"");
+            }
+        }
+
+        private void tbsoluong_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                epsoluong.SetError(tbsoluongmua, "Chỉ được nhập chữ số");
+                e.Handled = true;
+            }
+            else
+            {
+                epsoluong.Clear();
+            }
+        }
+
+        private void tbgia_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                epgia.SetError(tbsoluongmua, "Chỉ được nhập chữ số");
+                e.Handled = true;
+            }
+            else
+            {
+                epgia.Clear();
+            }
+        }
+
+        private void tbsoluongmua_Leave(object sender, EventArgs e)
+        {
+            epsoluongmua.Clear();
         }
     }
 }

@@ -39,7 +39,6 @@ namespace btl
         private void Mndoitt_Click(object sender, EventArgs e)
         {
             form.Doithongtin();
-            Hide();
         }
 
         private void Mnthoat_Click(object sender, EventArgs e)

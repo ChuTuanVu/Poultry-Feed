@@ -17,14 +17,14 @@ namespace btl
         {
             if (MessageBox.Show("Bạn có chắc chắn muốn xóa nhân viên này không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                string delete = "delete from nhanvien where manv ='" + tbmanv.Text + "'";
+                string delete = "delete from nhanvien where manv ='" + tbxoamanv.Text + "'";
                 database.Chay(delete);
                 MessageBox.Show("Xóa nhân viên thành công","Thành công");
                 Nhanvien_Load(this, EventArgs.Empty);
             }
             else
             {
-                MessageBox.Show("Không tìm thấy nhân viên có mã " + tbmanv.Text + "","Thất bại");
+                MessageBox.Show("Không tìm thấy nhân viên có mã " + tbxoamanv.Text + "","Thất bại");
             }
         }
 
@@ -33,6 +33,11 @@ namespace btl
             string select = "select * from nhanvien";
             database.Tai(select,dtgvnv);
             database.Tai(select, dtgvxoanv);
+            string lenh = "select * from nhanvien";
+            AutoCompleteStringCollection autoCompleteStringCollection = new AutoCompleteStringCollection();
+            string cot = "manhanvien";
+            TextBox textBox = tbxoamanv;
+            database.Tu(lenh,autoCompleteStringCollection,cot, textBox);
         }
 
         private void Dtgvxoanv_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -40,23 +45,23 @@ namespace btl
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow chon = dtgvxoanv.Rows[e.RowIndex];
-                tbmanv.Text = chon.Cells[0].Value.ToString(); ;
+                tbxoamanv.Text = chon.Cells[0].Value.ToString(); ;
             }
         }
 
         private void Btthem_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(tbma.Text) &&
+            if (!string.IsNullOrEmpty(tbmanv.Text) &&
                 !string.IsNullOrEmpty(tbten.Text) &&
                 !string.IsNullOrEmpty(tbsdt.Text) &&
                 !string.IsNullOrEmpty(cbbgioitinh.Text) &&
                 !string.IsNullOrEmpty(tbemail.Text))
             {
-                string insert = "insert into nhanvien values('" + tbma.Text + "',N'" + tbten.Text + "','" + tbsdt.Text + "',N'" + cbbgioitinh.Text + "','" + tbemail.Text + "')";
+                string insert = "insert into nhanvien values('" + tbmanv.Text + "',N'" + tbten.Text + "','" + tbsdt.Text + "',N'" + cbbgioitinh.Text + "','" + tbemail.Text + "')";
                 database.Chay(insert);
                 MessageBox.Show("Đăng ký thành công","Thành công");
                 Nhanvien_Load(this, EventArgs.Empty);
-                tbma.Clear();
+                tbmanv.Clear();
                 tbten.Clear();
                 tbsdt.Clear();
                 cbbgioitinh.Text = "";

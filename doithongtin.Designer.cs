@@ -51,6 +51,7 @@
             this.epemail = new System.Windows.Forms.ErrorProvider(this.components);
             this.epsdt = new System.Windows.Forms.ErrorProvider(this.components);
             this.epmk = new System.Windows.Forms.ErrorProvider(this.components);
+            this.ttemail = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pbtennguoidung)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbemail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbmatkhau)).BeginInit();
@@ -247,6 +248,12 @@
             this.epmk.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.epmk.ContainerControl = this;
             // 
+            // ttemail
+            // 
+            this.ttemail.AutoPopDelay = 5000;
+            this.ttemail.InitialDelay = 100;
+            this.ttemail.ReshowDelay = 100;
+            // 
             // Doithongtin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
@@ -315,5 +322,6 @@
         private System.Windows.Forms.ErrorProvider epemail;
         private System.Windows.Forms.ErrorProvider epsdt;
         private System.Windows.Forms.ErrorProvider epmk;
+        private System.Windows.Forms.ToolTip ttemail;
     }
 }

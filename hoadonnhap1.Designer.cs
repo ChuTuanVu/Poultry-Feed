@@ -1,6 +1,6 @@
 ﻿namespace btl
 {
-    partial class hoadonnhap1
+    partial class Hoadonnhap1
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(hoadonnhap1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Hoadonnhap1));
             this.rpnhap = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.hoadonnhap2 = new btl.hoadonnhap();
             this.SuspendLayout();
@@ -59,7 +59,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cửa số hóa đơn nhập";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.hoadonnhap1_Load);
+            this.Load += new System.EventHandler(this.Hoadonnhap1_Load);
             this.ResumeLayout(false);
 
         }

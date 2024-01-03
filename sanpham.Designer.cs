@@ -72,6 +72,10 @@
             this.btloc = new System.Windows.Forms.Button();
             this.tcsanpham = new System.Windows.Forms.TabControl();
             this.epsoluongmua = new System.Windows.Forms.ErrorProvider(this.components);
+            this.ttlocloai = new System.Windows.Forms.ToolTip(this.components);
+            this.ttlocnhacungcap = new System.Windows.Forms.ToolTip(this.components);
+            this.epsoluong = new System.Windows.Forms.ErrorProvider(this.components);
+            this.epgia = new System.Windows.Forms.ErrorProvider(this.components);
             this.tplsmuahang.SuspendLayout();
             this.tpsanpham.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvsanpham)).BeginInit();
@@ -79,6 +83,8 @@
             this.gbchucnang.SuspendLayout();
             this.tcsanpham.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epsoluongmua)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epsoluong)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epgia)).BeginInit();
             this.SuspendLayout();
             // 
             // tplsmuahang
@@ -139,7 +145,7 @@
             this.dtgvsanpham.Name = "dtgvsanpham";
             this.dtgvsanpham.ReadOnly = true;
             this.dtgvsanpham.Size = new System.Drawing.Size(866, 148);
-            this.dtgvsanpham.TabIndex = 1;
+            this.dtgvsanpham.TabIndex = 2;
             this.dtgvsanpham.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dtgvsanpham_CellClick);
             // 
             // Column1
@@ -205,29 +211,27 @@
             this.gbthongtin.Location = new System.Drawing.Point(3, 8);
             this.gbthongtin.Name = "gbthongtin";
             this.gbthongtin.Size = new System.Drawing.Size(880, 148);
-            this.gbthongtin.TabIndex = 3;
+            this.gbthongtin.TabIndex = 0;
             this.gbthongtin.TabStop = false;
             this.gbthongtin.Text = "Thông tin";
             // 
             // cbbloai
             // 
+            this.cbbloai.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.cbbloai.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.cbbloai.Enabled = false;
             this.cbbloai.FormattingEnabled = true;
-            this.cbbloai.Items.AddRange(new object[] {
-            "Gà",
-            "Vịt",
-            "Thuốc"});
             this.cbbloai.Location = new System.Drawing.Point(361, 121);
             this.cbbloai.Name = "cbbloai";
             this.cbbloai.Size = new System.Drawing.Size(138, 23);
-            this.cbbloai.TabIndex = 16;
+            this.cbbloai.TabIndex = 5;
             // 
             // tbnhacungcap
             // 
             this.tbnhacungcap.Location = new System.Drawing.Point(632, 122);
             this.tbnhacungcap.Name = "tbnhacungcap";
             this.tbnhacungcap.Size = new System.Drawing.Size(215, 22);
-            this.tbnhacungcap.TabIndex = 15;
+            this.tbnhacungcap.TabIndex = 6;
             // 
             // lbnhacungcap
             // 
@@ -252,8 +256,9 @@
             this.tbsoluongmua.Location = new System.Drawing.Point(118, 122);
             this.tbsoluongmua.Name = "tbsoluongmua";
             this.tbsoluongmua.Size = new System.Drawing.Size(61, 22);
-            this.tbsoluongmua.TabIndex = 12;
+            this.tbsoluongmua.TabIndex = 4;
             this.tbsoluongmua.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Tbsoluongmua_KeyPress);
+            this.tbsoluongmua.Leave += new System.EventHandler(this.Tbsoluongmua_Leave);
             // 
             // lbmota
             // 
@@ -316,7 +321,7 @@
             this.tbmota.Name = "tbmota";
             this.tbmota.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.tbmota.Size = new System.Drawing.Size(215, 72);
-            this.tbmota.TabIndex = 11;
+            this.tbmota.TabIndex = 7;
             // 
             // tbtensp
             // 
@@ -324,14 +329,14 @@
             this.tbtensp.Multiline = true;
             this.tbtensp.Name = "tbtensp";
             this.tbtensp.Size = new System.Drawing.Size(138, 55);
-            this.tbtensp.TabIndex = 3;
+            this.tbtensp.TabIndex = 1;
             // 
             // tbmasp
             // 
             this.tbmasp.Location = new System.Drawing.Point(118, 25);
             this.tbmasp.Name = "tbmasp";
             this.tbmasp.Size = new System.Drawing.Size(116, 22);
-            this.tbmasp.TabIndex = 1;
+            this.tbmasp.TabIndex = 0;
             // 
             // tbsoluong
             // 
@@ -339,7 +344,8 @@
             this.tbsoluong.Location = new System.Drawing.Point(118, 78);
             this.tbsoluong.Name = "tbsoluong";
             this.tbsoluong.Size = new System.Drawing.Size(61, 22);
-            this.tbsoluong.TabIndex = 7;
+            this.tbsoluong.TabIndex = 2;
+            this.tbsoluong.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Tbsoluong_KeyPress);
             // 
             // tbgia
             // 
@@ -347,7 +353,8 @@
             this.tbgia.Location = new System.Drawing.Point(361, 91);
             this.tbgia.Name = "tbgia";
             this.tbgia.Size = new System.Drawing.Size(138, 22);
-            this.tbgia.TabIndex = 9;
+            this.tbgia.TabIndex = 3;
+            this.tbgia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Tbgia_KeyPress);
             // 
             // gbchucnang
             // 
@@ -365,7 +372,7 @@
             this.gbchucnang.Location = new System.Drawing.Point(0, 157);
             this.gbchucnang.Name = "gbchucnang";
             this.gbchucnang.Size = new System.Drawing.Size(880, 148);
-            this.gbchucnang.TabIndex = 4;
+            this.gbchucnang.TabIndex = 1;
             this.gbchucnang.TabStop = false;
             this.gbchucnang.Text = "Hệ thống";
             // 
@@ -373,10 +380,10 @@
             // 
             this.btmota.Image = global::btl.Properties.Resources.mota;
             this.btmota.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btmota.Location = new System.Drawing.Point(237, 53);
+            this.btmota.Location = new System.Drawing.Point(220, 53);
             this.btmota.Name = "btmota";
             this.btmota.Size = new System.Drawing.Size(80, 40);
-            this.btmota.TabIndex = 10;
+            this.btmota.TabIndex = 2;
             this.btmota.Text = "    MÔ TẢ";
             this.btmota.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btmota.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -387,10 +394,10 @@
             // 
             this.btmua.Image = global::btl.Properties.Resources.mua;
             this.btmua.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btmua.Location = new System.Drawing.Point(422, 53);
+            this.btmua.Location = new System.Drawing.Point(408, 53);
             this.btmua.Name = "btmua";
-            this.btmua.Size = new System.Drawing.Size(80, 40);
-            this.btmua.TabIndex = 9;
+            this.btmua.Size = new System.Drawing.Size(94, 40);
+            this.btmua.TabIndex = 4;
             this.btmua.Text = "MUA HÀNG";
             this.btmua.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btmua.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -399,33 +406,32 @@
             // 
             // cbblocnhacungcap
             // 
+            this.cbblocnhacungcap.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cbblocnhacungcap.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.cbblocnhacungcap.FormattingEnabled = true;
-            this.cbblocnhacungcap.Items.AddRange(new object[] {
-            "Công ty cổ phần Tập đoàn DABACO Việt Nam",
-            "Công ty CP chăn nuôi C.P. Việt Nam",
-            "Công ty TNHH Cargill Việt Nam",
-            "De Heus Việt Nam",
-            "TT phân phối thuốc trang trại FARMVET"});
-            this.cbblocnhacungcap.Location = new System.Drawing.Point(710, 53);
+            this.cbblocnhacungcap.Location = new System.Drawing.Point(666, 53);
             this.cbblocnhacungcap.Name = "cbblocnhacungcap";
-            this.cbblocnhacungcap.Size = new System.Drawing.Size(140, 23);
-            this.cbblocnhacungcap.TabIndex = 8;
+            this.cbblocnhacungcap.Size = new System.Drawing.Size(184, 23);
+            this.cbblocnhacungcap.TabIndex = 7;
+            this.cbblocnhacungcap.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Cbblocnhacungcap_MouseMove);
             // 
             // tbtim
             // 
-            this.tbtim.Location = new System.Drawing.Point(710, 85);
-            this.tbtim.Multiline = true;
+            this.tbtim.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.tbtim.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.tbtim.Location = new System.Drawing.Point(666, 92);
             this.tbtim.Name = "tbtim";
-            this.tbtim.Size = new System.Drawing.Size(140, 42);
-            this.tbtim.TabIndex = 7;
+            this.tbtim.Size = new System.Drawing.Size(184, 22);
+            this.tbtim.TabIndex = 9;
+            this.tbtim.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Tbtim_KeyDown);
             // 
             // btthem
             // 
             this.btthem.Image = global::btl.Properties.Resources.them;
             this.btthem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btthem.Location = new System.Drawing.Point(121, 53);
+            this.btthem.Location = new System.Drawing.Point(102, 53);
             this.btthem.Name = "btthem";
-            this.btthem.Size = new System.Drawing.Size(80, 40);
+            this.btthem.Size = new System.Drawing.Size(88, 40);
             this.btthem.TabIndex = 1;
             this.btthem.Text = "THÊM";
             this.btthem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -440,7 +446,7 @@
             this.btxoa.Location = new System.Drawing.Point(494, 53);
             this.btxoa.Name = "btxoa";
             this.btxoa.Size = new System.Drawing.Size(80, 40);
-            this.btxoa.TabIndex = 3;
+            this.btxoa.TabIndex = 5;
             this.btxoa.Text = "XÓA";
             this.btxoa.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btxoa.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -451,10 +457,10 @@
             // 
             this.bttim.Image = global::btl.Properties.Resources.tim;
             this.bttim.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bttim.Location = new System.Drawing.Point(603, 87);
+            this.bttim.Location = new System.Drawing.Point(580, 82);
             this.bttim.Name = "bttim";
             this.bttim.Size = new System.Drawing.Size(80, 40);
-            this.bttim.TabIndex = 6;
+            this.bttim.TabIndex = 10;
             this.bttim.Text = " TÌM KIẾM";
             this.bttim.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.bttim.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -465,10 +471,10 @@
             // 
             this.btsua.Image = global::btl.Properties.Resources.sua;
             this.btsua.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btsua.Location = new System.Drawing.Point(351, 53);
+            this.btsua.Location = new System.Drawing.Point(324, 53);
             this.btsua.Name = "btsua";
             this.btsua.Size = new System.Drawing.Size(80, 40);
-            this.btsua.TabIndex = 2;
+            this.btsua.TabIndex = 3;
             this.btsua.Text = "SỬA";
             this.btsua.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btsua.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -491,24 +497,23 @@
             // 
             // cbblocloai
             // 
+            this.cbblocloai.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.cbblocloai.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.cbblocloai.FormattingEnabled = true;
-            this.cbblocloai.Items.AddRange(new object[] {
-            "Gà",
-            "Vịt",
-            "Thuốc"});
-            this.cbblocloai.Location = new System.Drawing.Point(710, 17);
+            this.cbblocloai.Location = new System.Drawing.Point(666, 17);
             this.cbblocloai.Name = "cbblocloai";
-            this.cbblocloai.Size = new System.Drawing.Size(140, 23);
-            this.cbblocloai.TabIndex = 5;
+            this.cbblocloai.Size = new System.Drawing.Size(184, 23);
+            this.cbblocloai.TabIndex = 6;
+            this.cbblocloai.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Cbblocloai_MouseMove);
             // 
             // btloc
             // 
             this.btloc.Image = global::btl.Properties.Resources.loc;
             this.btloc.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btloc.Location = new System.Drawing.Point(603, 26);
+            this.btloc.Location = new System.Drawing.Point(580, 21);
             this.btloc.Name = "btloc";
             this.btloc.Size = new System.Drawing.Size(80, 40);
-            this.btloc.TabIndex = 4;
+            this.btloc.TabIndex = 8;
             this.btloc.Text = "LỌC";
             this.btloc.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btloc.UseVisualStyleBackColor = true;
@@ -530,6 +535,30 @@
             this.epsoluongmua.BlinkRate = 1;
             this.epsoluongmua.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.epsoluongmua.ContainerControl = this;
+            // 
+            // ttlocloai
+            // 
+            this.ttlocloai.AutoPopDelay = 5000;
+            this.ttlocloai.InitialDelay = 100;
+            this.ttlocloai.ReshowDelay = 100;
+            // 
+            // ttlocnhacungcap
+            // 
+            this.ttlocnhacungcap.AutoPopDelay = 5000;
+            this.ttlocnhacungcap.InitialDelay = 100;
+            this.ttlocnhacungcap.ReshowDelay = 100;
+            // 
+            // epsoluong
+            // 
+            this.epsoluong.BlinkRate = 1;
+            this.epsoluong.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.epsoluong.ContainerControl = this;
+            // 
+            // epgia
+            // 
+            this.epgia.BlinkRate = 1;
+            this.epgia.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.epgia.ContainerControl = this;
             // 
             // Sanpham
             // 
@@ -554,6 +583,8 @@
             this.gbchucnang.PerformLayout();
             this.tcsanpham.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.epsoluongmua)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epsoluong)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epgia)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -601,5 +632,9 @@
         private System.Windows.Forms.ComboBox cbbloai;
         private hoadonmua hoadonmua1;
         private System.Windows.Forms.ErrorProvider epsoluongmua;
+        private System.Windows.Forms.ToolTip ttlocloai;
+        private System.Windows.Forms.ToolTip ttlocnhacungcap;
+        private System.Windows.Forms.ErrorProvider epsoluong;
+        private System.Windows.Forms.ErrorProvider epgia;
     }
 }

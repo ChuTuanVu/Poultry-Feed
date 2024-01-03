@@ -99,7 +99,7 @@
             this.pbemail.Size = new System.Drawing.Size(50, 50);
             this.pbemail.TabIndex = 6;
             this.pbemail.TabStop = false;
-            this.pbemail.Click += new System.EventHandler(this.pbemail_Click);
+            this.pbemail.Click += new System.EventHandler(this.Pbemail_Click);
             // 
             // pbfb
             // 
@@ -110,7 +110,7 @@
             this.pbfb.Size = new System.Drawing.Size(50, 50);
             this.pbfb.TabIndex = 5;
             this.pbfb.TabStop = false;
-            this.pbfb.Click += new System.EventHandler(this.pbfb_Click);
+            this.pbfb.Click += new System.EventHandler(this.Pbfb_Click);
             // 
             // vechungtoi
             // 

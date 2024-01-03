@@ -59,7 +59,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cửa sổ hóa đơn xuất";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.hoadonxuat1_Load);
+            this.Load += new System.EventHandler(this.Hoadonxuat1_Load);
             this.ResumeLayout(false);
 
         }

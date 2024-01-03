@@ -11,7 +11,7 @@ namespace btl
             InitializeComponent();
         }
 
-        private Database database = new Database();
+        private DataBase database = new DataBase();
         private Form form = new Form();
 
         private void Llbdangnhap_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -22,9 +22,8 @@ namespace btl
 
         private void Tbemail_TextChanged(object sender, EventArgs e)
         {
-            string count = "select count (*) from taikhoan where email = '" + tbemail.Text + "'";
-            int dem = database.Dem(count);
-            if (dem == 0 && tbemail.Text.Contains("@"))
+            string lenh = "select count (*) from taikhoan where email = '" + tbemail.Text + "'";
+            if (Convert.ToInt32(database.Lay(lenh)) == 0 && tbemail.Text.Contains("@"))
             {
                 ttemail.SetToolTip(tbemail, "");
                 btemail.Enabled = true;
@@ -54,7 +53,6 @@ namespace btl
                 btsdt.Enabled = true;
                 epsdt.Clear();
             }
-
         }
 
         private void Tbmk_TextChanged(object sender, EventArgs e)
@@ -74,9 +72,8 @@ namespace btl
 
         private void Tbtennguoidung_TextChanged(object sender, EventArgs e)
         {
-            string count = "select count(*) from taikhoan where tennguoidung = '" + tbtennguoidung.Text + "'";
-            int dem = database.Dem(count);
-            if (dem == 0 && tbtennguoidung.Text.Length > 3 && tbtennguoidung.Text.Length < 25)
+            string lenh = "select count(*) from taikhoan where tennguoidung = '" + tbtennguoidung.Text + "'";
+            if (Convert.ToInt32(database.Lay(lenh)) == 0 && tbtennguoidung.Text.Length > 3 && tbtennguoidung.Text.Length < 25)
             {
                 eptennguoidung.Clear();
                 bttennguoidung.Enabled = true;
@@ -171,9 +168,9 @@ namespace btl
                 !string.IsNullOrEmpty(tbmk.Text)&&
                 !string.IsNullOrEmpty(tbtennguoidung.Text))
             {
-                string insert = "insert into taikhoan values (N'" + tbtennguoidung.Text + "',N'" + tbmk.Text
+                string lenh = "insert into taikhoan values (N'" + tbtennguoidung.Text + "',N'" + tbmk.Text
                 + "',N'" + tbemail.Text + "','" + tbsdt.Text + "','" + dtpkngaysinh.Value.ToString("yyyy-MM-dd") + "', '" + DateTime.Now.ToString("yyyy-MM-dd") + "')";
-                database.Chay(insert);
+                database.Chay(lenh);
                 MessageBox.Show("Đăng ký thành công","Thành công");
             }
             else

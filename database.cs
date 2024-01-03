@@ -1,20 +1,20 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using CrystalDecisions.CrystalReports.Engine;
 
 namespace btl
 {
-    class Database
+    class DataBase
     {
-        //kiểu phi kết nối
         public string diachi = @"Data Source=LAPTOP\SQLEXPRESS;Initial Catalog=btl;Integrated Security=True";
         public SqlConnection kn;
         public SqlCommand cm;
         public SqlDataAdapter dtadt;
         public DataTable dttb;
 
-        public Database()
+        public DataBase()
         {
             kn = new SqlConnection(diachi);
             cm = new SqlCommand
@@ -23,7 +23,7 @@ namespace btl
             };
         }
 
-        public void Ketnoi()
+        public void Ket()
         {
             if (kn.State == ConnectionState.Closed)
             {
@@ -39,68 +39,119 @@ namespace btl
             }
         }
 
-        public void Chay(string batki)
+        public void Chay(string lenh)
         {
-            Ketnoi();
-            cm.CommandText = batki;
+            Ket();
+            cm.CommandText = lenh;
             cm.ExecuteNonQuery();
             Ngat();
         }
 
-        //public void Tai(string select, DataGridView dtgv)
-        //{
-        //    Ketnoi();
-        //    cm.CommandText = select;
-        //    dtadt = new SqlDataAdapter(cm);
-        //    dttb = new DataTable();
-        //    dtadt.Fill(dttb);
-        //    dtgv.DataSource = dttb;
-        //}
-
-        public void Tai(string select, DataGridView dtgv)
+        public void Tai(string lenh, Control control)
         {
-            Ketnoi();
-            cm.CommandText = select;
+            Ket();
+            cm.CommandText = lenh;
             dtadt = new SqlDataAdapter(cm);
             dttb = new DataTable();
             dtadt.Fill(dttb);
-            if (dttb.Columns.Contains("gia"))
+            Ngat();
+            if (control is DataGridView)
             {
-                foreach (DataRow row in dttb.Rows)
+                DataGridView dataGridView = control as DataGridView;
+                dataGridView.DataSource = dttb;
+            }
+            else if (control is ComboBox)
+            {
+                ComboBox comboBox = control as ComboBox;
+                foreach (DataRow dataRow in dttb.Rows)
                 {
-                    int giagoc = int.Parse(row["gia"].ToString());
-                    int gialai = (int)(giagoc * 1.2);
-                    row["gia"] = gialai;
+                    object giatri = dataRow[0].ToString();
+                    if (!comboBox.Items.Contains(giatri))
+                    {
+                        comboBox.Items.Add(giatri);
+                    }
                 }
             }
-            dtgv.DataSource = dttb;
         }
 
-        public int Dem(string count)
+        public void TaiV2(string lenh, Control control)
         {
-            Chay(count);
-            Ketnoi();
-            int dem = (int)cm.ExecuteScalar();
-            Ngat();
-            return dem;
-        }
-
-        public void Hoa(string tenproc,string ten,string giatriten, ReportDocument rpdcm)
-        {
-            Ketnoi();
-            cm.CommandType = CommandType.StoredProcedure;
-            cm.CommandText = tenproc;
-            cm.Parameters.AddWithValue(ten, giatriten);
+            Ket();
+            cm.CommandText = lenh;
             dtadt = new SqlDataAdapter(cm);
             dttb = new DataTable();
             dtadt.Fill(dttb);
-            rpdcm.SetDataSource(dttb);
+            Ngat();
+            if (control is DataGridView)
+            {
+                DataGridView dataGridView = control as DataGridView;
+                if (dttb.Columns.Contains("gia"))
+                {
+                    foreach (DataRow dataRow in dttb.Rows)
+                    {
+                        double giagoc = Convert.ToDouble((dataRow["gia"]));
+                        double gialai = giagoc * 1.2;
+                        dataRow["gia"] = gialai;
+                    }
+                    dataGridView.DataSource = dttb;
+                }
+            }
+        }
+
+        public object Lay(string lenh)
+        {
+            Chay(lenh);
+            Ket();
+            object giatri = cm.ExecuteScalar();
+            Ngat();
+            return giatri;
+        }
+
+        public void Hoa(string ten_proc, string ten_bien, string gia_tri_bien, ReportDocument reportDocument)
+        {
+            Ket();
+            cm.CommandType = CommandType.StoredProcedure;
+            cm.CommandText = ten_proc;
+            cm.Parameters.AddWithValue(ten_bien, gia_tri_bien);
+            dtadt = new SqlDataAdapter(cm);
+            dttb = new DataTable();
+            dtadt.Fill(dttb);
+            reportDocument.SetDataSource(dttb);
             cm.Parameters.Clear();
             cm.CommandType = CommandType.Text;
             Ngat();
         }
+
+        public void Tu(string lenh, AutoCompleteStringCollection autoCompleteStringCollection, Control control)
+        {
+            Ket();
+            cm.CommandText = lenh;
+            dtadt = new SqlDataAdapter(cm);
+            dttb = new DataTable();
+            dtadt.Fill(dttb);
+            Ngat();
+            foreach (DataRow dataRow in dttb.Rows)
+            {
+                for (int i = 0; i < dttb.Columns.Count; i++)
+                {
+                    autoCompleteStringCollection.Add(dataRow[i].ToString());
+                }
+            }
+
+            if (control is TextBox)
+            {
+                TextBox textBox = control as TextBox;
+                textBox.AutoCompleteCustomSource = autoCompleteStringCollection;
+            }
+            else if (control is ComboBox)
+            {
+                ComboBox comboBox = control as ComboBox;
+                comboBox.AutoCompleteCustomSource = autoCompleteStringCollection;
+            }
+        }
     }
-    class Luu
+
+    class Save
     {
         public static string tk;
     }

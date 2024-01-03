@@ -87,7 +87,7 @@
     <Compile Include="cacchucnang.Designer.cs">
       <DependentUpon>cacchucnang.cs</DependentUpon>
     </Compile>
-    <Compile Include="database.cs" />
+    <Compile Include="DataBase.cs" />
     <Compile Include="dangky.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +107,7 @@
       <DependentUpon>doithongtin.cs</DependentUpon>
     </Compile>
     <Compile Include="form.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="hoadonnhap1.cs">
       <SubType>Form</SubType>
     </Compile>

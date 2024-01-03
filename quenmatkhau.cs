@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using CrystalDecisions.CrystalReports.Engine;
 
 namespace btl
 {
@@ -11,7 +12,7 @@ namespace btl
             InitializeComponent();
         }
 
-        private Database sql = new Database();
+        private DataBase dataBase = new DataBase();
         private Form form = new Form();
 
         private void Quenmatkhau_FormClosing(object sender, FormClosingEventArgs e)
@@ -25,10 +26,9 @@ namespace btl
             if (!string.IsNullOrEmpty(tbtennguoidung.Text) &&
                 !string.IsNullOrEmpty(tbemailhoacsdt.Text))
             {
-                string count = "select count (*) from taikhoan where tennguoidung = '" + tbtennguoidung.Text + "' and sodienthoai = '" +
+                string lenh = "select count (*) from taikhoan where tennguoidung = '" + tbtennguoidung.Text + "' and sodienthoai = '" +
                 tbemailhoacsdt.Text + "' or email = '" + tbemailhoacsdt.Text + "' and tennguoidung <> 'admin'";
-                int dem = sql.Dem(count);
-                if (dem > 0)
+                if (Convert.ToInt32(dataBase.Lay(lenh)) > 0)
                 {
                     lbmk.Visible = true;
                     pbmk.Visible = true;
@@ -108,8 +108,8 @@ namespace btl
             if (string.IsNullOrEmpty(epmk.GetError(tbmk)) &&
                 string.IsNullOrEmpty(epxnmk.GetError(tbxnmk)))
             {
-                string update = "update taikhoan set matkhau = '" + tbmk.Text + "' where tennguoidung = '" + tbtennguoidung.Text + "'";
-                sql.Chay(update);
+                string lenh = "update taikhoan set matkhau = '" + tbmk.Text + "' where tennguoidung = '" + tbtennguoidung.Text + "'";
+                dataBase.Chay(lenh);
                 MessageBox.Show("Mật khẩu đã được đặt lại", "Thành công");
             }
             else

@@ -7,7 +7,7 @@
             InitializeComponent();
         }
 
-        private void hoadonxuat1_Load(object sender, System.EventArgs e)
+        private void Hoadonxuat1_Load(object sender, System.EventArgs e)
         {
             rpxuat.RefreshReport();
         }

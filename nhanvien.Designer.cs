@@ -1,6 +1,6 @@
 ﻿namespace btl
 {
-    partial class nhanvien
+    partial class Nhanvien
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(nhanvien));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Nhanvien));
             this.tcnv = new System.Windows.Forms.TabControl();
             this.tpthemnv = new System.Windows.Forms.TabPage();
             this.pbemail = new System.Windows.Forms.PictureBox();
@@ -37,7 +37,7 @@
             this.pbsdt = new System.Windows.Forms.PictureBox();
             this.pbhoten = new System.Windows.Forms.PictureBox();
             this.pbmanv = new System.Windows.Forms.PictureBox();
-            this.tbma = new System.Windows.Forms.TextBox();
+            this.tbmanv = new System.Windows.Forms.TextBox();
             this.lbma = new System.Windows.Forms.Label();
             this.btthem = new System.Windows.Forms.Button();
             this.cbbgioitinh = new System.Windows.Forms.ComboBox();
@@ -57,16 +57,16 @@
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.tpxoanv = new System.Windows.Forms.TabPage();
-            this.tbmanv = new System.Windows.Forms.TextBox();
+            this.tbxoa = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btxoa = new System.Windows.Forms.Button();
-            this.lbtieude = new System.Windows.Forms.Label();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dtgvxoanv = new System.Windows.Forms.DataGridView();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lbtieude = new System.Windows.Forms.Label();
             this.tcnv.SuspendLayout();
             this.tpthemnv.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbemail)).BeginInit();
@@ -100,7 +100,7 @@
             this.tpthemnv.Controls.Add(this.pbsdt);
             this.tpthemnv.Controls.Add(this.pbhoten);
             this.tpthemnv.Controls.Add(this.pbmanv);
-            this.tpthemnv.Controls.Add(this.tbma);
+            this.tpthemnv.Controls.Add(this.tbmanv);
             this.tpthemnv.Controls.Add(this.lbma);
             this.tpthemnv.Controls.Add(this.btthem);
             this.tpthemnv.Controls.Add(this.cbbgioitinh);
@@ -165,12 +165,12 @@
             this.pbmanv.TabIndex = 15;
             this.pbmanv.TabStop = false;
             // 
-            // tbma
+            // tbmanv
             // 
-            this.tbma.Location = new System.Drawing.Point(207, 71);
-            this.tbma.Name = "tbma";
-            this.tbma.Size = new System.Drawing.Size(174, 29);
-            this.tbma.TabIndex = 14;
+            this.tbmanv.Location = new System.Drawing.Point(207, 71);
+            this.tbmanv.Name = "tbmanv";
+            this.tbmanv.Size = new System.Drawing.Size(174, 29);
+            this.tbmanv.TabIndex = 14;
             // 
             // lbma
             // 
@@ -345,7 +345,7 @@
             // 
             // tpxoanv
             // 
-            this.tpxoanv.Controls.Add(this.tbmanv);
+            this.tpxoanv.Controls.Add(this.tbxoa);
             this.tpxoanv.Controls.Add(this.label2);
             this.tpxoanv.Controls.Add(this.btxoa);
             this.tpxoanv.Controls.Add(this.dtgvxoanv);
@@ -358,12 +358,14 @@
             this.tpxoanv.Text = "Xóa nhân viên";
             this.tpxoanv.UseVisualStyleBackColor = true;
             // 
-            // tbmanv
+            // tbxoa
             // 
-            this.tbmanv.Location = new System.Drawing.Point(339, 28);
-            this.tbmanv.Name = "tbmanv";
-            this.tbmanv.Size = new System.Drawing.Size(173, 29);
-            this.tbmanv.TabIndex = 3;
+            this.tbxoa.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.tbxoa.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.tbxoa.Location = new System.Drawing.Point(339, 28);
+            this.tbxoa.Name = "tbxoa";
+            this.tbxoa.Size = new System.Drawing.Size(173, 29);
+            this.tbxoa.TabIndex = 3;
             // 
             // label2
             // 
@@ -384,51 +386,6 @@
             this.btxoa.Text = "Xóa";
             this.btxoa.UseVisualStyleBackColor = true;
             this.btxoa.Click += new System.EventHandler(this.Btxoa_Click);
-            // 
-            // lbtieude
-            // 
-            this.lbtieude.AutoSize = true;
-            this.lbtieude.Font = new System.Drawing.Font("Times New Roman", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbtieude.Location = new System.Drawing.Point(372, 9);
-            this.lbtieude.Name = "lbtieude";
-            this.lbtieude.Size = new System.Drawing.Size(168, 40);
-            this.lbtieude.TabIndex = 1;
-            this.lbtieude.Text = "Nhân viên";
-            // 
-            // Column10
-            // 
-            this.Column10.DataPropertyName = "email";
-            this.Column10.HeaderText = "Email";
-            this.Column10.Name = "Column10";
-            this.Column10.ReadOnly = true;
-            // 
-            // Column9
-            // 
-            this.Column9.DataPropertyName = "gioitinh";
-            this.Column9.HeaderText = "Giới tính";
-            this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
-            // 
-            // Column8
-            // 
-            this.Column8.DataPropertyName = "sodienthoai";
-            this.Column8.HeaderText = "Số điện thoại";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            // 
-            // Column7
-            // 
-            this.Column7.DataPropertyName = "hotennhanvien";
-            this.Column7.HeaderText = "Họ tên nhân viên";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            // 
-            // Column6
-            // 
-            this.Column6.DataPropertyName = "manhanvien";
-            this.Column6.HeaderText = "Mã nhân viên";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
             // 
             // dtgvxoanv
             // 
@@ -460,7 +417,52 @@
             this.dtgvxoanv.TabIndex = 0;
             this.dtgvxoanv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dtgvxoanv_CellClick);
             // 
-            // nhanvien
+            // Column6
+            // 
+            this.Column6.DataPropertyName = "manhanvien";
+            this.Column6.HeaderText = "Mã nhân viên";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            // 
+            // Column7
+            // 
+            this.Column7.DataPropertyName = "hotennhanvien";
+            this.Column7.HeaderText = "Họ tên nhân viên";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            // 
+            // Column8
+            // 
+            this.Column8.DataPropertyName = "sodienthoai";
+            this.Column8.HeaderText = "Số điện thoại";
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            // 
+            // Column9
+            // 
+            this.Column9.DataPropertyName = "gioitinh";
+            this.Column9.HeaderText = "Giới tính";
+            this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
+            // 
+            // Column10
+            // 
+            this.Column10.DataPropertyName = "email";
+            this.Column10.HeaderText = "Email";
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
+            // 
+            // lbtieude
+            // 
+            this.lbtieude.AutoSize = true;
+            this.lbtieude.Font = new System.Drawing.Font("Times New Roman", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbtieude.Location = new System.Drawing.Point(372, 9);
+            this.lbtieude.Name = "lbtieude";
+            this.lbtieude.Size = new System.Drawing.Size(168, 40);
+            this.lbtieude.TabIndex = 1;
+            this.lbtieude.Text = "Nhân viên";
+            // 
+            // Nhanvien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
@@ -470,10 +472,10 @@
             this.Controls.Add(this.tcnv);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "nhanvien";
+            this.Name = "Nhanvien";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cửa sổ nhân viên";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.nhanvien_FormClosing);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Nhanvien_FormClosing);
             this.Load += new System.EventHandler(this.Nhanvien_Load);
             this.tcnv.ResumeLayout(false);
             this.tpthemnv.ResumeLayout(false);
@@ -500,7 +502,7 @@
         private System.Windows.Forms.TabPage tpthemnv;
         private System.Windows.Forms.TabPage tpttnv;
         private System.Windows.Forms.TabPage tpxoanv;
-        private System.Windows.Forms.TextBox tbma;
+        private System.Windows.Forms.TextBox tbmanv;
         private System.Windows.Forms.Label lbma;
         private System.Windows.Forms.ComboBox cbbgioitinh;
         private System.Windows.Forms.TextBox tbemail;
@@ -512,7 +514,7 @@
         private System.Windows.Forms.Label lbten;
         private System.Windows.Forms.DataGridView dtgvnv;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tbmanv;
+        private System.Windows.Forms.TextBox tbxoa;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btxoa;
         private System.Windows.Forms.Label lbtieude;

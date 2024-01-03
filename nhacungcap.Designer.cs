@@ -286,11 +286,13 @@
             // 
             // tbtim
             // 
-            this.tbtim.Location = new System.Drawing.Point(744, 50);
-            this.tbtim.Multiline = true;
+            this.tbtim.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.tbtim.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.tbtim.Location = new System.Drawing.Point(682, 60);
             this.tbtim.Name = "tbtim";
-            this.tbtim.Size = new System.Drawing.Size(80, 45);
+            this.tbtim.Size = new System.Drawing.Size(172, 26);
             this.tbtim.TabIndex = 10;
+            this.tbtim.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Tbtim_KeyDown);
             // 
             // btmoi
             // 
@@ -305,7 +307,7 @@
             this.btmoi.Text = "MỚI";
             this.btmoi.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btmoi.UseVisualStyleBackColor = true;
-            this.btmoi.Click += new System.EventHandler(this.btmoi_Click);
+            this.btmoi.Click += new System.EventHandler(this.Btmoi_Click);
             // 
             // bttim
             // 
@@ -313,7 +315,7 @@
             this.bttim.AutoSize = true;
             this.bttim.Image = global::btl.Properties.Resources.tim;
             this.bttim.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bttim.Location = new System.Drawing.Point(643, 50);
+            this.bttim.Location = new System.Drawing.Point(596, 50);
             this.bttim.Name = "bttim";
             this.bttim.Size = new System.Drawing.Size(80, 45);
             this.bttim.TabIndex = 8;
@@ -321,7 +323,7 @@
             this.bttim.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.bttim.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.bttim.UseVisualStyleBackColor = true;
-            this.bttim.Click += new System.EventHandler(this.bttim_Click);
+            this.bttim.Click += new System.EventHandler(this.Bttim_Click);
             // 
             // btxoa
             // 
@@ -329,7 +331,7 @@
             this.btxoa.AutoSize = true;
             this.btxoa.Image = global::btl.Properties.Resources.xoa;
             this.btxoa.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btxoa.Location = new System.Drawing.Point(502, 50);
+            this.btxoa.Location = new System.Drawing.Point(455, 50);
             this.btxoa.Name = "btxoa";
             this.btxoa.Size = new System.Drawing.Size(85, 45);
             this.btxoa.TabIndex = 7;
@@ -354,7 +356,7 @@
             this.btsua.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btsua.UseVisualStyleBackColor = true;
             this.btsua.Click += new System.EventHandler(this.Btsua_Click);
-            this.btsua.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btsua_MouseMove);
+            this.btsua.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Btsua_MouseMove);
             // 
             // btthem
             // 
@@ -370,7 +372,7 @@
             this.btthem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btthem.UseVisualStyleBackColor = true;
             this.btthem.Click += new System.EventHandler(this.Btthem_Click);
-            this.btthem.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btthem_MouseMove);
+            this.btthem.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Btthem_MouseMove);
             // 
             // nhacungcap
             // 
@@ -387,7 +389,7 @@
             this.Name = "nhacungcap";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cửa sổ nhà cung cấp";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.nhacungcap_FormClosing);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Nhacungcap_FormClosing);
             this.Load += new System.EventHandler(this.Nhacungcap_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtgvnhacungcap)).EndInit();
             this.gbthongtin.ResumeLayout(false);

@@ -15,7 +15,7 @@ namespace btl
 
         private void Cacchucnang_Load(object sender, EventArgs e)
         {
-            if (Luu.tk == "admin")
+            if (Save.tk.ToLower() == "admin")
             {
                 pbchaomung.Image = Properties.Resources.chaomungadmin;
                 mndoitt.Visible = false;
@@ -39,7 +39,6 @@ namespace btl
         private void Mndoitt_Click(object sender, EventArgs e)
         {
             form.Doithongtin();
-            Hide();
         }
 
         private void Mnthoat_Click(object sender, EventArgs e)

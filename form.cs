@@ -34,7 +34,7 @@
 
         public void Nhanvien()
         {
-            nhanvien fnhanvien = new nhanvien();
+            Nhanvien fnhanvien = new Nhanvien();
             fnhanvien.ShowDialog();
         }
 
@@ -58,7 +58,7 @@
 
         public void Hoadonnhap()
         {
-            hoadonnhap1 fhoadon = new hoadonnhap1();
+            Hoadonnhap1 fhoadon = new Hoadonnhap1();
             fhoadon.ShowDialog();
         }
 

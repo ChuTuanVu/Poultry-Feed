@@ -11,13 +11,16 @@ namespace btl
             InitializeComponent();
         }
 
-        private Database database = new Database();
+        private DataBase dataBase = new DataBase();
         private Form form = new Form();
 
         private void Taikhoan_Load(object sender, EventArgs e)
         {
+            string lenh = "select tennguoidung from taikhoan";
+            AutoCompleteStringCollection autoCompleteStringCollection = new AutoCompleteStringCollection();
+            dataBase.Tu(lenh, autoCompleteStringCollection, tbtim);
             string select = "select * from taikhoan where tennguoidung <> 'admin' and tennguoidung <> 'user'";
-            database.Tai(select, dtgvtaikhoan);
+            dataBase.Tai(select, dtgvtaikhoan);
         }
 
         private void Dtgvtaikhoan_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -46,27 +49,29 @@ namespace btl
         {
             if (!string.IsNullOrEmpty(tbtennguoidung.Text))
             {
-                string count = "select count (*) from taikhoan where tennguoidung = '" + tbtennguoidung.Text + "'";
-                int dem = database.Dem(count);
-                if (dem > 0)
+                string lenh = "select count (*) from taikhoan where tennguoidung = '" + tbtennguoidung.Text + "'";
+                if (Convert.ToInt32(dataBase.Lay(lenh)) > 0)
                 {
-                    if (MessageBox.Show("Xóa người dùng ngày sẽ xóa toàn bộ dữ liệu liên quan", "Bạn đã chắc chắn muốn xóa?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    if (MessageBox.Show("Xóa người dùng ngày sẽ xóa toàn bộ dữ liệu liên quan",
+                            "Bạn có chắc chắn muốn xóa?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
+                        DialogResult.Yes)
                     {
-                        string delete = "delete from taikhoan where tennguoidung = '" + tbtennguoidung.Text + "'";
-                        database.Chay(delete);
-                        string select = "select * from taikhoan where tennguoidung <> 'admin' and tennguoidung <> 'user'";
+                        string lenh1 = "delete from taikhoan where tennguoidung = '" + tbtennguoidung.Text + "'";
+                        dataBase.Chay(lenh1);
                         MessageBox.Show("Xóa tài khoản thành công", "Thành công");
-                        database.Tai(select, dtgvtaikhoan);
+                        string lenh2 =
+                            "select * from taikhoan where tennguoidung <> 'admin' and tennguoidung <> 'user'";
+                        dataBase.Tai(lenh2, dtgvtaikhoan);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Tên " + tbtennguoidung.Text + " không có trong hệ thống", "Không tìm thấy");
+                    MessageBox.Show("Tên " + tbtennguoidung.Text + " không có trong hệ thống", "Không tìm thấy!");
                 }
             }
             else
             {
-                MessageBox.Show("Vui lòng chọn một người dùng phía dưới hoặc nhập tên người dùng thủ công","Thiếu thông tin");
+                MessageBox.Show("Chọn một tài khoản phía dưới hoặc nhập tên người dùng.", "Thiếu thông tin!");
             }
         }
 
@@ -74,9 +79,8 @@ namespace btl
         {
             if (!string.IsNullOrEmpty(tbtennguoidung.Text))
             {
-                string count = "select count (*) from taikhoan where tennguoidung = '" + tbtennguoidung.Text + "'";
-                int dem = database.Dem(count);
-                if (dem == 0)
+                string lenh = "select count (*) from taikhoan where tennguoidung = '" + tbtennguoidung.Text + "'";
+                if (Convert.ToInt32(dataBase.Lay(lenh)) == 0)
                 {
                     if (string.IsNullOrEmpty(epemail.GetError(tbemail)) &&
                         string.IsNullOrEmpty(epsdt.GetError(tbsdt)) &&
@@ -84,24 +88,26 @@ namespace btl
                         string.IsNullOrEmpty(eptennguoidung.GetError(tbtennguoidung)))
                     {
                         string insert = "insert into taikhoan values (N'" + tbtennguoidung.Text + "','" + tbmk.Text
-                        + "','" + tbemail.Text + "','" + tbsdt.Text + "','" + dtpkngaysinh.Value.ToString("yyyy-MM-dd") + "', '" + DateTime.Now.ToString("yyyy-MM-dd") + "')";
-                        database.Chay(insert);
+                                        + "','" + tbemail.Text + "','" + tbsdt.Text + "','" +
+                                        dtpkngaysinh.Value.ToString("yyyy-MM-dd") + "', '" +
+                                        DateTime.Now.ToString("yyyy-MM-dd") + "')";
+                        dataBase.Chay(insert);
                         Taikhoan_Load(this, EventArgs.Empty);
                         MessageBox.Show("Thêm tài khoản thành công", "Thành công");
                     }
                     else
                     {
-                        MessageBox.Show("Vui lòng kiểm tra lại thông tin", "Thất bại");
+                        MessageBox.Show("Vui lòng kiểm tra lại thông tin!", "Thất bại!");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Tên " + tbtennguoidung.Text + " đã có người đăng ký", "Bị trùng");
+                    MessageBox.Show("Tên người dùng " + tbtennguoidung.Text + " không khả dụng!", "Thất bại!");
                 }
             }
             else
             {
-                MessageBox.Show("Vui lòng điền đầy đủ thông tin", "Thất bại");
+                MessageBox.Show("Vui lòng điền đầy đủ thông tin!", "Thất bại!");
             }
         }
 
@@ -119,15 +125,19 @@ namespace btl
                 if (MessageBox.Show("Bạn có muốn sửa thông tin tài khoản này không?", "Sửa?", MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    string update = "update taikhoan set tennguoidung = '" + tbtennguoidung.Text + "', matkhau = '" + tbmk.Text + "',email = '" + tbemail.Text + "', sodienthoai = '" + tbsdt.Text + "', ngaysinh = '" + dtpkngaysinh.Value.ToString("yyyy-MM-dd") + "' where tennguoidung = '" + tbtennguoidung.Text + "'";
-                    database.Chay(update);
-                    MessageBox.Show("Sửa tài khoản thành công!", "Thành công");
-                    Taikhoan_Load(this, EventArgs.Empty);
+                    string lenh = "update taikhoan set tennguoidung = '" + tbtennguoidung.Text + "', matkhau = '" +
+                                  tbmk.Text + "',email = '" + tbemail.Text + "', sodienthoai = '" + tbsdt.Text +
+                                  "', ngaysinh = '" + dtpkngaysinh.Value.ToString("yyyy-MM-dd") +
+                                  "' where tennguoidung = '" + tbtennguoidung.Text + "'";
+                    dataBase.Chay(lenh);
+                    MessageBox.Show("Sửa tài khoản thành công.", "Thành công");
+                    string select = "select * from taikhoan where tennguoidung <> 'admin' and tennguoidung <> 'user'";
+                    dataBase.Tai(select, dtgvtaikhoan);
                 }
             }
             else
             {
-                MessageBox.Show("Vui lòng kiểm tra lại thông tin", "Thất bại");
+                MessageBox.Show("Vui lòng kiểm tra lại thông tin!", "Thất bại!");
             }
         }
 
@@ -135,12 +145,13 @@ namespace btl
         {
             if (string.IsNullOrEmpty(tbtim.Text))
             {
-                Taikhoan_Load(this,EventArgs.Empty);
+                string select = "select * from taikhoan where tennguoidung <> 'admin' and tennguoidung <> 'user'";
+                dataBase.Tai(select, dtgvtaikhoan);
             }
             else
             {
                 string select = "select * from taikhoan where tennguoidung = '" + tbtim.Text + "'";
-                database.Tai(select, dtgvtaikhoan);
+                dataBase.Tai(select, dtgvtaikhoan);
             }
         }
 
@@ -174,47 +185,34 @@ namespace btl
 
         private void Tbtennguoidung_TextChanged(object sender, EventArgs e)
         {
-            string count = "select count(*) from taikhoan where tennguoidung = '" + tbtennguoidung.Text + "'";
-            int dem = database.Dem(count);
-            if (dem == 0)
+            string lenh = "select count(*) from taikhoan where tennguoidung = '" + tbtennguoidung.Text + "'";
+            if (Convert.ToInt32(dataBase.Lay(lenh)) == 0 && tbtennguoidung.Text.Length > 3 &&
+                tbtennguoidung.Text.Length < 25)
             {
-                if (tbtennguoidung.Text.Length < 3)
-                {
-                    eptennguoidung.SetError(tbtennguoidung, "Tên người dùng phải dài hơn 3 kí tự.");
-                }
-                else if (tbtennguoidung.Text.Length > 25)
-                {
-                    eptennguoidung.SetError(tbtennguoidung, "Tên người dùng phải ngắn hơn 25 kí tự.");
-                }
-                else
-                {
-                    eptennguoidung.Clear();
-                }
+                eptennguoidung.Clear();
             }
             else
             {
-                eptennguoidung.SetError(tbtennguoidung, "Tên người dùng này đã tồn tại.");
+                eptennguoidung.SetError(tbtennguoidung, "Tên người dùng " + tbtennguoidung.Text + " không khả dụng.");
             }
         }
 
         private void Tbemail_TextChanged(object sender, EventArgs e)
         {
-            string count = "select count (*) from taikhoan where email = '" + tbemail.Text + "'";
-            int dem = database.Dem(count);
-            if (dem == 0)
+            string lenh = "select count (*) from taikhoan where email = '" + tbemail.Text + "'";
+            if (Convert.ToInt32(dataBase.Lay(lenh)) == 0 && tbemail.Text.Contains("@"))
             {
-                if (!tbemail.Text.Contains("@"))
-                {
-                    epemail.SetError(tbemail, $"Vui lòng bao gồm '@' trong địa chỉ email. '" + tbemail.Text + "' đang thiếu một '@'");
-                }
-                else
-                {
-                    epemail.Clear();
-                }
+                ttemail.SetToolTip(tbemail, "");
+                epemail.Clear();
             }
             else
             {
-                epemail.SetError(tbemail, "Email không hợp lệ hoặc đã được đăng ký");
+                epemail.SetError(tbemail, "Email không hợp lệ hoặc đã được sử dụng");
+                if (!tbemail.Text.Contains("@"))
+                {
+                    ttemail.SetToolTip(tbemail,
+                        $"Vui lòng bao gồm '@' trong địa chỉ email. '" + tbemail.Text + "' đang thiếu một '@'.");
+                }
             }
         }
 
@@ -228,8 +226,8 @@ namespace btl
             {
                 epsdt.Clear();
             }
-
         }
+
         private void Tbsdt_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -237,6 +235,7 @@ namespace btl
                 epsdt.SetError(tbsdt, "Chỉ được nhập chữ số");
                 e.Handled = true;
             }
+
             if (e.KeyChar == (char)Keys.Enter)
             {
                 dtpkngaysinh.Focus();
@@ -260,6 +259,14 @@ namespace btl
         {
             form.Cacchucnang();
             Hide();
+        }
+
+        private void Tbtim_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                Bttim_Click(this, EventArgs.Empty);
+            }
         }
     }
 }

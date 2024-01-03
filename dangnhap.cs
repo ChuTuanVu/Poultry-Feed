@@ -12,7 +12,7 @@ namespace btl
             InitializeComponent();
         }
 
-        private Database database = new Database();
+        private DataBase dataBase = new DataBase();
         private Form form = new Form();
 
         private void Lbtennguoidung1_Click(object sender, EventArgs e)
@@ -47,17 +47,16 @@ namespace btl
 
         private void Btdangnhap_Click(object sender, EventArgs e)
         {
-            string count = "select count (*) from taikhoan where tennguoidung = '" + tbtennguoidung.Text + "' and matkhau = '" + tbmk.Text + "'";
-            int dem = database.Dem(count);
-            if (dem > 0)
+            string lenh = "select count (*) from taikhoan where tennguoidung = '" + tbtennguoidung.Text + "' and matkhau = '" + tbmk.Text + "'";
+            if (Convert.ToInt32(dataBase.Lay(lenh)) > 0)
             {
-                Luu.tk = tbtennguoidung.Text;
+                Save.tk = tbtennguoidung.Text;
                 form.Cacchucnang();
                 Hide();
             }
             else
             {
-                MessageBox.Show("Thông tin xác thực đăng nhập của bạn không khớp với tài khoản trong hệ thống.","Kiểm tra lại thông tin");
+                MessageBox.Show("Tên tài khoản hoặc mật khẩu không chính xác!","Thất bại!");
                 tbmk.Clear();
                 tbmk.Focus();
             }

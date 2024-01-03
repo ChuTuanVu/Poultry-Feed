@@ -11,12 +11,12 @@ namespace btl
             InitializeComponent();
         }
 
-        private Database database = new Database();
+        private DataBase dataBase = new DataBase();
         private Form form = new Form();
 
         private void Doithongtin_Load(object sender, EventArgs e)
         {
-            tbtaikhoan.Text = Luu.tk;
+            tbtaikhoan.Text = Save.tk;
         }
 
         private void Tbtaikhoan_Click(object sender, EventArgs e)
@@ -37,8 +37,8 @@ namespace btl
                     if (MessageBox.Show("Bạn có chắc muốn đổi thông tin không", "Xác nhận", MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        string update = "update taikhoan set email = '" + tbemail.Text + "', matkhau = '" + tbmk.Text + "', sodienthoai = '" + tbsdt.Text + "', ngaysinh = '" + dtpkngaysinh.Value.ToString("yyyy-MM-dd") + "' where tennguoidung = '" + tbtaikhoan.Text + "'";
-                        database.Chay(update);
+                        string lenh = "update taikhoan set email = '" + tbemail.Text + "', matkhau = '" + tbmk.Text + "', sodienthoai = '" + tbsdt.Text + "', ngaysinh = '" + dtpkngaysinh.Value.ToString("yyyy-MM-dd") + "' where tennguoidung = '" + tbtaikhoan.Text + "'";
+                        dataBase.Chay(lenh);
                         MessageBox.Show("Đổi thông tin tài khoản thành công\nBạn sẽ đăng nhập lại sau 3 giây!", "Thành công");
                         demnguoc.Start();
                     }
@@ -54,11 +54,11 @@ namespace btl
             }
         }
 
-        public int tictactictac = 3;
+        public int s = 3;
         private void Demnguoc_Tick(object sender, EventArgs e)
         {
-            tictactictac--;
-            if (tictactictac <= 0)
+            s--;
+            if (s <= 0)
             {
                 demnguoc.Stop();
                 form.Dangnhap();
@@ -82,22 +82,19 @@ namespace btl
 
         private void Tbemail_TextChanged(object sender, EventArgs e)
         {
-            string count = "select count (*) from taikhoan where email = '" + tbemail.Text + "'";
-            int dem = database.Dem(count);
-            if (dem == 0)
+            string lenh = "select count (*) from taikhoan where email = '" + tbemail.Text + "'";
+            if (Convert.ToInt32(dataBase.Lay(lenh)) == 0 && tbemail.Text.Contains("@"))
             {
-                if (!tbemail.Text.Contains("@"))
-                {
-                    epemail.SetError(tbemail, $"Vui lòng bao gồm '@' trong địa chỉ email. '" + tbemail.Text + "' đang thiếu một '@'");
-                }
-                else
-                {
-                    epemail.Clear();
-                }
+                ttemail.SetToolTip(tbemail, "");
+                epemail.Clear();
             }
             else
             {
-                epemail.SetError(tbemail, "Email không hợp lệ hoặc đã được đăng ký");
+                epemail.SetError(tbemail, "Email không hợp lệ hoặc đã được sử dụng");
+                if (!tbemail.Text.Contains("@"))
+                {
+                    ttemail.SetToolTip(tbemail, $"Vui lòng bao gồm '@' trong địa chỉ email. '" + tbemail.Text + "' đang thiếu một '@'.");
+                }
             }
         }
 

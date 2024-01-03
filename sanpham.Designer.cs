@@ -258,7 +258,11 @@
             this.tbsoluongmua.Size = new System.Drawing.Size(61, 22);
             this.tbsoluongmua.TabIndex = 4;
             this.tbsoluongmua.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Tbsoluongmua_KeyPress);
+<<<<<<< HEAD
             this.tbsoluongmua.Leave += new System.EventHandler(this.Tbsoluongmua_Leave);
+=======
+            this.tbsoluongmua.Leave += new System.EventHandler(this.tbsoluongmua_Leave);
+>>>>>>> 88ce484a094424691e36687680fa448091bdf8e4
             // 
             // lbmota
             // 
@@ -344,8 +348,13 @@
             this.tbsoluong.Location = new System.Drawing.Point(118, 78);
             this.tbsoluong.Name = "tbsoluong";
             this.tbsoluong.Size = new System.Drawing.Size(61, 22);
+<<<<<<< HEAD
             this.tbsoluong.TabIndex = 2;
             this.tbsoluong.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Tbsoluong_KeyPress);
+=======
+            this.tbsoluong.TabIndex = 7;
+            this.tbsoluong.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbsoluong_KeyPress);
+>>>>>>> 88ce484a094424691e36687680fa448091bdf8e4
             // 
             // tbgia
             // 
@@ -353,8 +362,13 @@
             this.tbgia.Location = new System.Drawing.Point(361, 91);
             this.tbgia.Name = "tbgia";
             this.tbgia.Size = new System.Drawing.Size(138, 22);
+<<<<<<< HEAD
             this.tbgia.TabIndex = 3;
             this.tbgia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Tbgia_KeyPress);
+=======
+            this.tbgia.TabIndex = 9;
+            this.tbgia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbgia_KeyPress);
+>>>>>>> 88ce484a094424691e36687680fa448091bdf8e4
             // 
             // gbchucnang
             // 
@@ -397,7 +411,11 @@
             this.btmua.Location = new System.Drawing.Point(408, 53);
             this.btmua.Name = "btmua";
             this.btmua.Size = new System.Drawing.Size(94, 40);
+<<<<<<< HEAD
             this.btmua.TabIndex = 4;
+=======
+            this.btmua.TabIndex = 9;
+>>>>>>> 88ce484a094424691e36687680fa448091bdf8e4
             this.btmua.Text = "MUA HÀNG";
             this.btmua.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btmua.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -409,11 +427,25 @@
             this.cbblocnhacungcap.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cbblocnhacungcap.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.cbblocnhacungcap.FormattingEnabled = true;
+<<<<<<< HEAD
             this.cbblocnhacungcap.Location = new System.Drawing.Point(666, 53);
             this.cbblocnhacungcap.Name = "cbblocnhacungcap";
             this.cbblocnhacungcap.Size = new System.Drawing.Size(184, 23);
             this.cbblocnhacungcap.TabIndex = 7;
             this.cbblocnhacungcap.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Cbblocnhacungcap_MouseMove);
+=======
+            this.cbblocnhacungcap.Items.AddRange(new object[] {
+            "Công ty cổ phần Tập đoàn DABACO Việt Nam",
+            "Công ty CP chăn nuôi C.P. Việt Nam",
+            "Công ty TNHH Cargill Việt Nam",
+            "De Heus Việt Nam",
+            "TT phân phối thuốc trang trại FARMVET"});
+            this.cbblocnhacungcap.Location = new System.Drawing.Point(666, 53);
+            this.cbblocnhacungcap.Name = "cbblocnhacungcap";
+            this.cbblocnhacungcap.Size = new System.Drawing.Size(184, 23);
+            this.cbblocnhacungcap.TabIndex = 8;
+            this.cbblocnhacungcap.MouseMove += new System.Windows.Forms.MouseEventHandler(this.cbblocnhacungcap_MouseMove);
+>>>>>>> 88ce484a094424691e36687680fa448091bdf8e4
             // 
             // tbtim
             // 
@@ -422,8 +454,13 @@
             this.tbtim.Location = new System.Drawing.Point(666, 92);
             this.tbtim.Name = "tbtim";
             this.tbtim.Size = new System.Drawing.Size(184, 22);
+<<<<<<< HEAD
             this.tbtim.TabIndex = 9;
             this.tbtim.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Tbtim_KeyDown);
+=======
+            this.tbtim.TabIndex = 7;
+            this.tbtim.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbtim_KeyDown);
+>>>>>>> 88ce484a094424691e36687680fa448091bdf8e4
             // 
             // btthem
             // 
@@ -500,11 +537,23 @@
             this.cbblocloai.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.cbblocloai.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.cbblocloai.FormattingEnabled = true;
+<<<<<<< HEAD
             this.cbblocloai.Location = new System.Drawing.Point(666, 17);
             this.cbblocloai.Name = "cbblocloai";
             this.cbblocloai.Size = new System.Drawing.Size(184, 23);
             this.cbblocloai.TabIndex = 6;
             this.cbblocloai.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Cbblocloai_MouseMove);
+=======
+            this.cbblocloai.Items.AddRange(new object[] {
+            "Gà",
+            "Vịt",
+            "Thuốc"});
+            this.cbblocloai.Location = new System.Drawing.Point(666, 17);
+            this.cbblocloai.Name = "cbblocloai";
+            this.cbblocloai.Size = new System.Drawing.Size(184, 23);
+            this.cbblocloai.TabIndex = 5;
+            this.cbblocloai.MouseMove += new System.Windows.Forms.MouseEventHandler(this.cbblocloai_MouseMove);
+>>>>>>> 88ce484a094424691e36687680fa448091bdf8e4
             // 
             // btloc
             // 

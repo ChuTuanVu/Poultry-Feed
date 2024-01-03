@@ -16,9 +16,17 @@ namespace btl
 
         private void Taikhoan_Load(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             string lenh = "select tennguoidung from taikhoan";
             AutoCompleteStringCollection autoCompleteStringCollection = new AutoCompleteStringCollection();
             dataBase.Tu(lenh, autoCompleteStringCollection, tbtim);
+=======
+            string lenh = "select * from taikhoan";
+            AutoCompleteStringCollection autoCompleteStringCollection = new AutoCompleteStringCollection();
+            string cot = "tennguoidung";
+            TextBox textBox = tbtim;
+            database.Tu(lenh, autoCompleteStringCollection, cot, textBox);
+>>>>>>> 88ce484a094424691e36687680fa448091bdf8e4
             string select = "select * from taikhoan where tennguoidung <> 'admin' and tennguoidung <> 'user'";
             dataBase.Tai(select, dtgvtaikhoan);
         }
@@ -52,9 +60,13 @@ namespace btl
                 string lenh = "select count (*) from taikhoan where tennguoidung = '" + tbtennguoidung.Text + "'";
                 if (Convert.ToInt32(dataBase.Lay(lenh)) > 0)
                 {
+<<<<<<< HEAD
                     if (MessageBox.Show("Xóa người dùng ngày sẽ xóa toàn bộ dữ liệu liên quan",
                             "Bạn có chắc chắn muốn xóa?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
                         DialogResult.Yes)
+=======
+                    if (MessageBox.Show("Xóa người dùng ngày sẽ xóa toàn bộ dữ liệu liên quan", "Bạn có chắc chắn muốn xóa?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+>>>>>>> 88ce484a094424691e36687680fa448091bdf8e4
                     {
                         string lenh1 = "delete from taikhoan where tennguoidung = '" + tbtennguoidung.Text + "'";
                         dataBase.Chay(lenh1);
@@ -71,7 +83,11 @@ namespace btl
             }
             else
             {
+<<<<<<< HEAD
                 MessageBox.Show("Chọn một tài khoản phía dưới hoặc nhập tên người dùng.", "Thiếu thông tin!");
+=======
+                MessageBox.Show("Chọn một tài khoản phía dưới hoặc nhập tên người dùng.","Thiếu thông tin!");
+>>>>>>> 88ce484a094424691e36687680fa448091bdf8e4
             }
         }
 
@@ -125,6 +141,7 @@ namespace btl
                 if (MessageBox.Show("Bạn có muốn sửa thông tin tài khoản này không?", "Sửa?", MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question) == DialogResult.Yes)
                 {
+<<<<<<< HEAD
                     string lenh = "update taikhoan set tennguoidung = '" + tbtennguoidung.Text + "', matkhau = '" +
                                   tbmk.Text + "',email = '" + tbemail.Text + "', sodienthoai = '" + tbsdt.Text +
                                   "', ngaysinh = '" + dtpkngaysinh.Value.ToString("yyyy-MM-dd") +
@@ -133,6 +150,12 @@ namespace btl
                     MessageBox.Show("Sửa tài khoản thành công.", "Thành công");
                     string select = "select * from taikhoan where tennguoidung <> 'admin' and tennguoidung <> 'user'";
                     dataBase.Tai(select, dtgvtaikhoan);
+=======
+                    string update = "update taikhoan set tennguoidung = '" + tbtennguoidung.Text + "', matkhau = '" + tbmk.Text + "',email = '" + tbemail.Text + "', sodienthoai = '" + tbsdt.Text + "', ngaysinh = '" + dtpkngaysinh.Value.ToString("yyyy-MM-dd") + "' where tennguoidung = '" + tbtennguoidung.Text + "'";
+                    database.Chay(update);
+                    MessageBox.Show("Sửa tài khoản thành công.", "Thành công");
+                    Taikhoan_Load(this, EventArgs.Empty);
+>>>>>>> 88ce484a094424691e36687680fa448091bdf8e4
                 }
             }
             else
@@ -185,9 +208,15 @@ namespace btl
 
         private void Tbtennguoidung_TextChanged(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             string lenh = "select count(*) from taikhoan where tennguoidung = '" + tbtennguoidung.Text + "'";
             if (Convert.ToInt32(dataBase.Lay(lenh)) == 0 && tbtennguoidung.Text.Length > 3 &&
                 tbtennguoidung.Text.Length < 25)
+=======
+            string count = "select count(*) from taikhoan where tennguoidung = '" + tbtennguoidung.Text + "'";
+            int dem = database.Dem(count);
+            if (dem == 0 && tbtennguoidung.Text.Length > 3 && tbtennguoidung.Text.Length < 25)
+>>>>>>> 88ce484a094424691e36687680fa448091bdf8e4
             {
                 eptennguoidung.Clear();
             }
@@ -199,8 +228,14 @@ namespace btl
 
         private void Tbemail_TextChanged(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             string lenh = "select count (*) from taikhoan where email = '" + tbemail.Text + "'";
             if (Convert.ToInt32(dataBase.Lay(lenh)) == 0 && tbemail.Text.Contains("@"))
+=======
+            string count = "select count (*) from taikhoan where email = '" + tbemail.Text + "'";
+            int dem = database.Dem(count);
+            if (dem == 0 && tbemail.Text.Contains("@"))
+>>>>>>> 88ce484a094424691e36687680fa448091bdf8e4
             {
                 ttemail.SetToolTip(tbemail, "");
                 epemail.Clear();
@@ -210,8 +245,12 @@ namespace btl
                 epemail.SetError(tbemail, "Email không hợp lệ hoặc đã được sử dụng");
                 if (!tbemail.Text.Contains("@"))
                 {
+<<<<<<< HEAD
                     ttemail.SetToolTip(tbemail,
                         $"Vui lòng bao gồm '@' trong địa chỉ email. '" + tbemail.Text + "' đang thiếu một '@'.");
+=======
+                    ttemail.SetToolTip(tbemail, $"Vui lòng bao gồm '@' trong địa chỉ email. '" + tbemail.Text + "' đang thiếu một '@'.");
+>>>>>>> 88ce484a094424691e36687680fa448091bdf8e4
                 }
             }
         }
@@ -261,9 +300,15 @@ namespace btl
             Hide();
         }
 
+<<<<<<< HEAD
         private void Tbtim_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
+=======
+        private void tbtim_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode==Keys.Enter)
+>>>>>>> 88ce484a094424691e36687680fa448091bdf8e4
             {
                 Bttim_Click(this, EventArgs.Empty);
             }

@@ -5,7 +5,11 @@ namespace btl
 {
     public partial class Sanpham : System.Windows.Forms.Form
     {
+<<<<<<< HEAD
         private string masanpham;
+=======
+        public string masanpham;
+>>>>>>> 88ce484a094424691e36687680fa448091bdf8e4
         public Sanpham()
         {
             InitializeComponent();
@@ -16,6 +20,7 @@ namespace btl
 
         void Taidulieu()
         {
+<<<<<<< HEAD
             string lenh = "select masanpham, tensanpham, loai, soluong, gia, nhacungcap from sanpham";
             if (Save.tk.ToLower() == "admin")
             {
@@ -24,16 +29,32 @@ namespace btl
             else
             {
                 dataBase.TaiV2(lenh, dtgvsanpham);
+=======
+            string select = "select masanpham, tensanpham, loai, soluong, gia, nhacungcap from sanpham";
+            if (Luu.tk == "admin")
+            {
+                database.Taiad(select, dtgvsanpham);
+            }
+            else
+            {
+                database.Tai(select, dtgvsanpham);
+>>>>>>> 88ce484a094424691e36687680fa448091bdf8e4
             }
 
             string tenproc = "hoadonnguoidung";
             string ten = "@tennguoidung";
+<<<<<<< HEAD
             string giatriten = Save.tk;
             dataBase.Hoa(tenproc, ten, giatriten, hoadonmua1);           
+=======
+            string giatriten = Luu.tk;
+            database.Hoa(tenproc, ten, giatriten, hoadonmua1);           
+>>>>>>> 88ce484a094424691e36687680fa448091bdf8e4
         }
 
         private void Sanpham_Load(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             string lenh = "select masanpham, tensanpham from sanpham";
             AutoCompleteStringCollection autoCompleteStringCollection = new AutoCompleteStringCollection();
             dataBase.Tu(lenh, autoCompleteStringCollection, tbtim );
@@ -55,6 +76,29 @@ namespace btl
             string lenh5 = "select nhacungcap from sanpham";
             dataBase.Tai(lenh5, cbblocnhacungcap);
 
+=======
+            string lenh = "select * from sanpham";
+            AutoCompleteStringCollection autoCompleteStringCollection = new AutoCompleteStringCollection();
+            string cot = "masanpham";
+            string cot1 = "tensanpham";
+            TextBox textBox = tbtim;
+            database.Tu(lenh, autoCompleteStringCollection, cot, textBox );
+            database.Tu(lenh, autoCompleteStringCollection, cot1, textBox);
+
+            AutoCompleteStringCollection autoCompleteStringCollection1 = new AutoCompleteStringCollection();
+            string cot2 = "loai";
+            ComboBox comboBox = cbblocloai;
+            database.Tu(lenh, autoCompleteStringCollection1, cot2, comboBox);
+
+            AutoCompleteStringCollection autoCompleteStringCollection2 = new AutoCompleteStringCollection();
+            string cot3 = "nhacungcap";
+            ComboBox comboBox1 = cbblocnhacungcap;
+            database.Tu(lenh, autoCompleteStringCollection2, cot3, comboBox1);
+
+            AutoCompleteStringCollection autoCompleteStringCollection3 = new AutoCompleteStringCollection();
+            ComboBox comboBox2 = cbbloai;
+            database.Tu(lenh, autoCompleteStringCollection3, cot2, cbbloai);
+>>>>>>> 88ce484a094424691e36687680fa448091bdf8e4
 
             Taidulieu();
             if (Save.tk == "admin")
@@ -131,6 +175,7 @@ namespace btl
                 string lenh = "select count (*) from sanpham where masanpham = '" + masanpham + "'";
                 if (Convert.ToInt32(dataBase.Lay(lenh)) != 0)
                 {
+<<<<<<< HEAD
                     if (MessageBox.Show("Bạn có muốn sửa sản phẩm này không?", "Thông báo", MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.Yes)
                     {
@@ -150,6 +195,22 @@ namespace btl
                         Taidulieu();
                         MessageBox.Show("Sửa sản phẩm thành công", "Thành công");
                     }
+=======
+                    string lenh = "select soluong from sanpham where masanpham = '" + tbmasp.Text +"'";
+                    int ss = database.Dem(lenh);
+                    if (ss == Convert.ToInt16(tbsoluong.Text))
+                    {
+                        string update = "update sanpham set masanpham = '" + masanpham + "', tensanpham = N'" + tbtensp.Text + "', gia = '" + tbgia.Text + "', loai = N'" + cbbloai.Text + "' where masanpham = '" + tbmasp.Text + "'";
+                        database.Chay(update);
+                    }
+                    else
+                    {
+                        string update = "update sanpham set masanpham = '" + masanpham + "', tensanpham = N'" + tbtensp.Text + "',soluong = '" + tbsoluong.Text + "', gia = '" + tbgia.Text + "', loai = N'" + cbbloai.Text + "' where masanpham = '" + tbmasp.Text + "'";
+                        database.Chay(update);
+                    }
+                    Taidulieu();
+                    MessageBox.Show("Sửa sản phẩm thành công", "Thành công");
+>>>>>>> 88ce484a094424691e36687680fa448091bdf8e4
                 }
                 else
                 {
@@ -159,6 +220,10 @@ namespace btl
             else
             {
                 MessageBox.Show("Thông tin sản phẩm còn thiếu!", "Thất bại!");
+            }
+            else
+            {
+
             }
         }
 
@@ -291,9 +356,17 @@ namespace btl
                 !string.IsNullOrEmpty(cbbloai.Text) &&
                 !string.IsNullOrEmpty(tbnhacungcap.Text))
             {
+<<<<<<< HEAD
                 string lenh = "select mota from sanpham where masanpham = '" + masanpham + "'";
                 dataBase.Lay(lenh);
                 tbmota.Text = Convert.ToString(dataBase.Lay(lenh));
+=======
+                string select = "select mota from sanpham where masanpham = '" + tbmasp.Text + "'";
+                database.Chay(select);
+                database.Ket();
+                tbmota.Text = database.cm.ExecuteScalar().ToString();
+                database.Ngat();
+>>>>>>> 88ce484a094424691e36687680fa448091bdf8e4
             }
         }
 
@@ -316,7 +389,11 @@ namespace btl
             Hide();
         }
 
+<<<<<<< HEAD
         private void Tbtim_KeyDown(object sender, KeyEventArgs e)
+=======
+        private void tbtim_KeyDown(object sender, KeyEventArgs e)
+>>>>>>> 88ce484a094424691e36687680fa448091bdf8e4
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -324,7 +401,11 @@ namespace btl
             }
         }
 
+<<<<<<< HEAD
         private void Cbblocloai_MouseMove(object sender, MouseEventArgs e)
+=======
+        private void cbblocloai_MouseMove(object sender, MouseEventArgs e)
+>>>>>>> 88ce484a094424691e36687680fa448091bdf8e4
         {
             if (string.IsNullOrEmpty(cbblocloai.Text))
             {
@@ -336,7 +417,11 @@ namespace btl
             }
         }
 
+<<<<<<< HEAD
         private void Cbblocnhacungcap_MouseMove(object sender, MouseEventArgs e)
+=======
+        private void cbblocnhacungcap_MouseMove(object sender, MouseEventArgs e)
+>>>>>>> 88ce484a094424691e36687680fa448091bdf8e4
         {
             if (string.IsNullOrEmpty(cbblocloai.Text))
             {
@@ -348,7 +433,11 @@ namespace btl
             }
         }
 
+<<<<<<< HEAD
         private void Tbsoluong_KeyPress(object sender, KeyPressEventArgs e)
+=======
+        private void tbsoluong_KeyPress(object sender, KeyPressEventArgs e)
+>>>>>>> 88ce484a094424691e36687680fa448091bdf8e4
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
@@ -361,7 +450,11 @@ namespace btl
             }
         }
 
+<<<<<<< HEAD
         private void Tbgia_KeyPress(object sender, KeyPressEventArgs e)
+=======
+        private void tbgia_KeyPress(object sender, KeyPressEventArgs e)
+>>>>>>> 88ce484a094424691e36687680fa448091bdf8e4
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
@@ -374,7 +467,11 @@ namespace btl
             }
         }
 
+<<<<<<< HEAD
         private void Tbsoluongmua_Leave(object sender, EventArgs e)
+=======
+        private void tbsoluongmua_Leave(object sender, EventArgs e)
+>>>>>>> 88ce484a094424691e36687680fa448091bdf8e4
         {
             epsoluongmua.Clear();
         }

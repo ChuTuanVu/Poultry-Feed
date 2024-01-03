@@ -62,6 +62,10 @@ D:\btl\bin\Debug\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
 D:\btl\bin\Debug\CrystalDecisions.ReportAppServer.ObjectFactory.dll
 D:\btl\bin\Debug\CrystalDecisions.ReportAppServer.CommonControls.dll
 D:\btl\bin\Debug\stdole.dll
+<<<<<<< HEAD
+=======
+D:\btl\obj\Debug\btl.csprojAssemblyReference.cache
+>>>>>>> 88ce484a094424691e36687680fa448091bdf8e4
 D:\btl\obj\Debug\btl.Cacchucnang.resources
 D:\btl\obj\Debug\btl.Dangky.resources
 D:\btl\obj\Debug\btl.dangnhap.resources
@@ -69,7 +73,11 @@ D:\btl\obj\Debug\btl.Doithongtin.resources
 D:\btl\obj\Debug\btl.hoadonnhap1.resources
 D:\btl\obj\Debug\btl.hoadonxuat1.resources
 D:\btl\obj\Debug\btl.nhacungcap.resources
+<<<<<<< HEAD
 D:\btl\obj\Debug\btl.Nhanvien.resources
+=======
+D:\btl\obj\Debug\btl.nhanvien.resources
+>>>>>>> 88ce484a094424691e36687680fa448091bdf8e4
 D:\btl\obj\Debug\btl.Properties.Resources.resources
 D:\btl\obj\Debug\btl.quenmatkhau.resources
 D:\btl\obj\Debug\btl.Sanpham.resources
@@ -83,4 +91,7 @@ D:\btl\obj\Debug\btl.application
 D:\btl\obj\Debug\btl.csproj.CopyComplete
 D:\btl\obj\Debug\btl.exe
 D:\btl\obj\Debug\btl.pdb
+<<<<<<< HEAD
 D:\btl\obj\Debug\btl.csprojAssemblyReference.cache
+=======
+>>>>>>> 88ce484a094424691e36687680fa448091bdf8e4

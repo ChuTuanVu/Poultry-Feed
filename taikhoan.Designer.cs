@@ -159,7 +159,12 @@
             this.tbtim.Name = "tbtim";
             this.tbtim.Size = new System.Drawing.Size(160, 22);
             this.tbtim.TabIndex = 5;
+<<<<<<< HEAD
             this.tbtim.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Tbtim_KeyDown);
+=======
+            this.tbtim.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbtim.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbtim_KeyDown);
+>>>>>>> 88ce484a094424691e36687680fa448091bdf8e4
             // 
             // btmoi
             // 

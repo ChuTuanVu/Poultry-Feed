@@ -16,9 +16,17 @@ namespace btl
 
         private void Nhacungcap_Load(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             string lenh = "select manhacungcap, tennhacungcap from nhacungcap";
             AutoCompleteStringCollection autoCompleteStringCollection = new AutoCompleteStringCollection();
             dataBase.Tu(lenh, autoCompleteStringCollection, tbtim);
+=======
+            string lenh = "select * from nhacungcap";
+            AutoCompleteStringCollection autoCompleteStringCollection = new AutoCompleteStringCollection();
+            string cot = "manhacungcap";
+            TextBox textBox = tbtim;
+            database.Tu(lenh, autoCompleteStringCollection, cot, textBox);
+>>>>>>> 88ce484a094424691e36687680fa448091bdf8e4
             string select = "select * from nhacungcap";
             dataBase.Tai(select,dtgvnhacungcap);
         }
@@ -66,8 +74,13 @@ namespace btl
                 if (MessageBox.Show("Bạn có muốn sửa nhà cung cấp này không?", "Sửa nhà cung cấp?", MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question) == DialogResult.Yes)
                 {
+<<<<<<< HEAD
                     string lenh = "update nhacungcap set manhacungcap = '" + manhacungcap + "', tennhacungcap = N'" + tbtenncc.Text + "',diachi = N'" + tbdiachi.Text + "', sodienthoai = '" + tbsdt.Text + "', ngayky = N'" + dtpkngayky.Value.ToString("yyyy-MM-dd") + "',ngayhethan = N'" + dtpkngayhet.Value.ToString("yyyy-MM-dd") + "' where manhacungcap = '" + manhacungcap + "'";
                     dataBase.Chay(lenh);
+=======
+                    string update = "update nhacungcap set manhacungcap = '" + manhacungcap + "', tennhacungcap = N'" + tbtenncc.Text + "',diachi = N'" + tbdiachi.Text + "', sodienthoai = '" + tbsdt.Text + "', ngayky = N'" + dtpkngayky.Value.ToString("yyyy-MM-dd") + "',ngayhethan = N'" + dtpkngayhet.Value.ToString("yyyy-MM-dd") + "' where manhacungcap = '" + tbmanhacc.Text + "'";
+                    database.Chay(update);
+>>>>>>> 88ce484a094424691e36687680fa448091bdf8e4
                     MessageBox.Show("Sửa sản phẩm thành công!", "Thành công");
                     string select = "select * from nhacungcap";
                     dataBase.Tai(select, dtgvnhacungcap);
@@ -144,11 +157,19 @@ namespace btl
             Hide();
         }
 
+<<<<<<< HEAD
         private void Tbtim_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
                 Bttim_Click(this, EventArgs.Empty);
+=======
+        private void tbtim_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                bttim_Click(this, EventArgs.Empty);
+>>>>>>> 88ce484a094424691e36687680fa448091bdf8e4
             }
         }
     }

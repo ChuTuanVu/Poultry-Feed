@@ -43,14 +43,22 @@
     </dependentAssembly>
   </dependency>
   <dependency>
+<<<<<<< HEAD
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="btl.exe" size="1058816">
+=======
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="btl.exe" size="1058304">
+>>>>>>> 88ce484a094424691e36687680fa448091bdf8e4
       <assemblyIdentity name="btl" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+<<<<<<< HEAD
         <dsig:DigestValue>kn5jsuDPhN6J2bQU6ardPqYWi0UeOWjrrwhPYq/YWl0=</dsig:DigestValue>
+=======
+        <dsig:DigestValue>b1sAO9diS2/auLtuZMeT9CqAAYD53B5Tfcv/jmKL6uU=</dsig:DigestValue>
+>>>>>>> 88ce484a094424691e36687680fa448091bdf8e4
       </hash>
     </dependentAssembly>
   </dependency>

@@ -57,7 +57,11 @@
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.tpxoanv = new System.Windows.Forms.TabPage();
+<<<<<<< HEAD
             this.tbxoa = new System.Windows.Forms.TextBox();
+=======
+            this.tbxoamanv = new System.Windows.Forms.TextBox();
+>>>>>>> 88ce484a094424691e36687680fa448091bdf8e4
             this.label2 = new System.Windows.Forms.Label();
             this.btxoa = new System.Windows.Forms.Button();
             this.dtgvxoanv = new System.Windows.Forms.DataGridView();
@@ -345,7 +349,11 @@
             // 
             // tpxoanv
             // 
+<<<<<<< HEAD
             this.tpxoanv.Controls.Add(this.tbxoa);
+=======
+            this.tpxoanv.Controls.Add(this.tbxoamanv);
+>>>>>>> 88ce484a094424691e36687680fa448091bdf8e4
             this.tpxoanv.Controls.Add(this.label2);
             this.tpxoanv.Controls.Add(this.btxoa);
             this.tpxoanv.Controls.Add(this.dtgvxoanv);
@@ -358,6 +366,7 @@
             this.tpxoanv.Text = "Xóa nhân viên";
             this.tpxoanv.UseVisualStyleBackColor = true;
             // 
+<<<<<<< HEAD
             // tbxoa
             // 
             this.tbxoa.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
@@ -366,6 +375,16 @@
             this.tbxoa.Name = "tbxoa";
             this.tbxoa.Size = new System.Drawing.Size(173, 29);
             this.tbxoa.TabIndex = 3;
+=======
+            // tbxoamanv
+            // 
+            this.tbxoamanv.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.tbxoamanv.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.tbxoamanv.Location = new System.Drawing.Point(339, 28);
+            this.tbxoamanv.Name = "tbxoamanv";
+            this.tbxoamanv.Size = new System.Drawing.Size(173, 29);
+            this.tbxoamanv.TabIndex = 3;
+>>>>>>> 88ce484a094424691e36687680fa448091bdf8e4
             // 
             // label2
             // 
@@ -462,7 +481,11 @@
             this.lbtieude.TabIndex = 1;
             this.lbtieude.Text = "Nhân viên";
             // 
+<<<<<<< HEAD
             // Nhanvien
+=======
+            // nhanvien
+>>>>>>> 88ce484a094424691e36687680fa448091bdf8e4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
@@ -514,7 +537,11 @@
         private System.Windows.Forms.Label lbten;
         private System.Windows.Forms.DataGridView dtgvnv;
         private System.Windows.Forms.Label label1;
+<<<<<<< HEAD
         private System.Windows.Forms.TextBox tbxoa;
+=======
+        private System.Windows.Forms.TextBox tbxoamanv;
+>>>>>>> 88ce484a094424691e36687680fa448091bdf8e4
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btxoa;
         private System.Windows.Forms.Label lbtieude;
